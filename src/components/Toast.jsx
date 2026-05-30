@@ -44,7 +44,7 @@ function ToastItem({ toast, onRemove }) {
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-white text-[13px] font-semibold shadow-lg transition-all duration-300 ${
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-white text-[13px] font-semibold toast-premium transition-all duration-300 ${
         colors[toast.type] || colors.info
       } ${
         visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-2 scale-95'

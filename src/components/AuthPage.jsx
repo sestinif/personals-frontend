@@ -39,7 +39,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-400 to-brand-700 flex items-center justify-center icon-badge mx-auto mb-4">
             <span className="text-white font-extrabold text-[24px] leading-none">P</span>
           </div>
-          <h1 className="text-[24px] font-extrabold text-gray-900 dark:text-white tracking-tight">Personals</h1>
+          <h1 className="text-[24px] font-extrabold text-gray-900 dark:text-white tracking-tight text-depth">Personals</h1>
           <p className="text-[13px] text-gray-400 dark:text-gray-500 mt-1 font-medium">
             {isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}
           </p>
@@ -48,13 +48,13 @@ export default function AuthPage({ onAuth, apiUrl }) {
         {/* Card */}
         <div className="card-premium p-8">
           {/* Tabs */}
-          <div className="flex gap-1 p-1 bg-gray-100/80 dark:bg-white/[0.04] rounded-xl mb-6">
+          <div className="flex gap-1 p-1 toggle-pill rounded-xl mb-6">
             <button
               type="button"
               onClick={() => { setIsLogin(true); setError('') }}
               className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
                 isLogin
-                  ? 'bg-white dark:bg-white/[0.1] text-gray-900 dark:text-white shadow-sm'
+                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >
@@ -65,7 +65,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
               onClick={() => { setIsLogin(false); setError('') }}
               className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
                 !isLogin
-                  ? 'bg-white dark:bg-white/[0.1] text-gray-900 dark:text-white shadow-sm'
+                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >

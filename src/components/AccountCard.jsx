@@ -52,7 +52,9 @@ export default function AccountCard({
   return (
     <div className="card-premium overflow-hidden group/card">
       {/* Colored top accent line */}
-      <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${account.color}, ${account.color}88)` }} />
+      <div className="h-[3px] w-full relative" style={{ background: `linear-gradient(90deg, ${account.color}, ${account.color}88)` }}>
+        <div className="absolute inset-x-[15%] top-0 h-[3px] blur-[4px] opacity-60" style={{ background: account.color }} />
+      </div>
 
       {/* Header */}
       <div

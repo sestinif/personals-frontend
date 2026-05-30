@@ -39,12 +39,12 @@ export default function Modal({ open, onClose, title, children }) {
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
     >
       <div
-        className={`bg-white dark:bg-[#16162a] rounded-2xl w-full max-w-md transition-all duration-300 ease-out border border-transparent dark:border-white/[0.06] ${
+        className={`relative bg-white dark:bg-gradient-to-b dark:from-[#181830] dark:to-[#12122a] rounded-2xl w-full max-w-md transition-all duration-300 ease-out border border-gray-200/50 dark:border-transparent overflow-hidden ${
           isVisible
             ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-[0.97] translate-y-3'
         }`}
-        style={{ boxShadow: isVisible ? '0 25px 60px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.03) inset, 0 1px 0 rgba(255,255,255,0.05) inset' : undefined }}
+        style={{ boxShadow: isVisible ? '0 25px 70px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04) inset, 0 1px 0 rgba(255,255,255,0.07) inset, 0 -1px 4px rgba(0,0,0,0.1) inset' : undefined }}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100/80 dark:border-white/[0.06]">
           <h3 className="text-[17px] font-bold text-gray-900 dark:text-white tracking-tight">{title}</h3>

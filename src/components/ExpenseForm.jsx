@@ -46,7 +46,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
 
   const toggleBtn = (active) => `flex-1 py-2 text-[12px] font-semibold rounded-lg transition-all duration-200 ${
     active
-      ? 'bg-white dark:bg-white/[0.1] text-gray-900 dark:text-white shadow-sm'
+      ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
       : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
   }`
 
@@ -70,7 +70,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className={labelClass}>Tipo</label>
-          <div className="flex gap-0.5 p-0.5 bg-gray-100/80 dark:bg-white/[0.04] rounded-lg">
+          <div className="flex gap-0.5 p-0.5 toggle-pill rounded-lg">
             <button type="button" onClick={() => setForm({ ...form, expense_type: 'subscription' })} className={toggleBtn(form.expense_type === 'subscription')}>
               Abbonam.
             </button>
@@ -81,7 +81,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
         </div>
         <div>
           <label className={labelClass}>Frequenza</label>
-          <div className="flex gap-0.5 p-0.5 bg-gray-100/80 dark:bg-white/[0.04] rounded-lg">
+          <div className="flex gap-0.5 p-0.5 toggle-pill rounded-lg">
             <button type="button" onClick={() => setForm({ ...form, frequency: 'monthly' })} className={toggleBtn(form.frequency === 'monthly')}>
               Mensile
             </button>

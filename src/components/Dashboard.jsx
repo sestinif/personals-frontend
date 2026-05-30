@@ -58,9 +58,10 @@ function StatCard({ label, value, sublabel, icon: Icon, gradient, delay = 0, isC
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
+      <div className="shine" />
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
-          <div className="p-2.5 bg-white/[0.1] rounded-xl border border-white/[0.1] icon-badge">
+          <div className="p-2.5 bg-white/[0.1] rounded-xl border border-white/[0.08] icon-badge">
             <Icon className="w-5 h-5" />
           </div>
         </div>
@@ -175,7 +176,7 @@ export default function Dashboard({ data }) {
     <div className="space-y-6">
       <div className="animate-fade-up">
         <p className="text-[14px] text-brand-500 dark:text-brand-400 font-semibold mb-0.5">{getGreeting()}</p>
-        <h1 className="text-[28px] font-extrabold text-gray-900 dark:text-white tracking-tight">Dashboard</h1>
+        <h1 className="text-[28px] font-extrabold text-gray-900 dark:text-white tracking-tight text-depth">Dashboard</h1>
         <p className="text-gray-400 dark:text-gray-500 mt-0.5 capitalize font-medium">{monthName}</p>
       </div>
 

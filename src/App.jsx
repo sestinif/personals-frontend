@@ -115,6 +115,8 @@ function AppContent({ onLogout, user }) {
 
   return (
     <div className="flex h-screen bg-depth bg-noise transition-colors duration-300">
+      <div className="ambient-orb ambient-orb-1" />
+      <div className="ambient-orb ambient-orb-2" />
       {/* Sidebar */}
       <aside className={`${sidebarOpen ? 'w-[280px]' : 'w-0 overflow-hidden'} flex-shrink-0 bg-white/80 dark:bg-[#0d0d1a]/90 glass sidebar-depth border-r border-gray-200/50 dark:border-white/[0.04] flex flex-col transition-all duration-400 ease-out`}>
         {/* Logo */}
@@ -249,7 +251,7 @@ function AppContent({ onLogout, user }) {
               <Dashboard data={dashboard} />
               <div className="mt-10 space-y-5">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-[18px] font-bold text-gray-900 dark:text-white tracking-tight">Tutti i conti</h2>
+                  <h2 className="text-[18px] font-bold text-gray-900 dark:text-white tracking-tight text-depth">Tutti i conti</h2>
                   <span className="text-[12px] font-semibold text-gray-300 dark:text-gray-600 uppercase tracking-wider">{accounts.length} conti</span>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 stagger">
@@ -299,7 +301,7 @@ function AppContent({ onLogout, user }) {
                       <AccountIcon icon={account.icon} className="w-7 h-7" />
                     </div>
                     <div>
-                      <h1 className="text-[28px] font-extrabold text-gray-900 dark:text-white tracking-tight">{account.name}</h1>
+                      <h1 className="text-[28px] font-extrabold text-gray-900 dark:text-white tracking-tight text-depth">{account.name}</h1>
                       <p className="text-gray-400 dark:text-gray-500 font-medium">
                         {getExpensesForAccount(accountId).length} spese ricorrenti
                       </p>
