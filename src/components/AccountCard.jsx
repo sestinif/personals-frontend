@@ -8,6 +8,10 @@ function formatCurrency(amount) {
   }).format(amount)
 }
 
+function isExpenseYearly(e) {
+  return e.frequency === 'yearly' || (e.renewal_day && e.renewal_day.toLowerCase().includes('annuale'))
+}
+
 function getExpenseLabel(expense) {
   const parts = []
   if (expense.expense_type === 'financing') {
@@ -17,8 +21,11 @@ function getExpenseLabel(expense) {
       if (remaining) parts.push(remaining)
     }
   }
-  if (expense.frequency === 'yearly') parts.push('Annuale')
-  if (expense.renewal_day) parts.push(`Giorno ${expense.renewal_day}`)
+  if (isExpenseYearly(expense)) {
+    parts.push('Annuale')
+  } else if (expense.renewal_day) {
+    parts.push(`Giorno ${expense.renewal_day}`)
+  }
   return parts.join(' · ')
 }
 
@@ -47,7 +54,8 @@ export default function AccountCard({
   onDeleteAccount,
 }) {
   const [showActions, setShowActions] = useState(false)
-  const total = expenses.reduce((sum, e) => sum + (e.frequency === 'yearly' ? e.amount / 12 : e.amount), 0)
+  const isYearly = isExpenseYearly
+  const total = expenses.reduce((sum, e) => sum + (isYearly(e) ? e.amount / 12 : e.amount), 0)
 
   return (
     <div className="card-premium overflow-hidden group/card">
@@ -127,7 +135,7 @@ export default function AccountCard({
                     </span>
                   )}
                 </div>
-                {(expense.frequency === 'yearly' || expense.renewal_day || (expense.expense_type === 'financing' && expense.end_date)) && (
+                {(isYearly(expense) || expense.renewal_day || (expense.expense_type === 'financing' && expense.end_date)) && (
                   <p className={`text-[11px] font-medium ${
                     expense.expense_type === 'financing' && expense.end_date && getRemainingTime(expense.end_date) === 'Scaduto'
                       ? 'text-red-400'
@@ -155,9 +163,9 @@ export default function AccountCard({
               </div>
               <div className="text-right w-28">
                 <span className="text-[14px] font-semibold text-gray-600 dark:text-gray-300 font-number">
-                  {formatCurrency(expense.amount)}{expense.frequency === 'yearly' ? '/a' : ''}
+                  {formatCurrency(expense.amount)}{isYearly(expense) ? '/a' : ''}
                 </span>
-                {expense.frequency === 'yearly' && (
+                {isYearly(expense) && (
                   <p className="text-[10px] text-gray-300 dark:text-gray-500 font-number font-medium">
                     {formatCurrency(expense.amount / 12)}/m
                   </p>
