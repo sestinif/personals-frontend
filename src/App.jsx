@@ -123,7 +123,7 @@ function AppContent({ onLogout, user }) {
         <div className="px-6 py-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-[14px] bg-accent-strong flex items-center justify-center icon-badge">
-              <span className="text-white font-semibold text-[18px] leading-none" style={{ fontFamily: 'Inter' }}>P</span>
+              <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="white" strokeWidth="2"/><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="white" strokeWidth="2" strokeLinecap="round"/><circle cx="16.5" cy="13" r="1.25" fill="white"/></svg>
             </div>
             <div>
               <h1 className="text-[16px] font-semibold text-gray-900 dark:text-ink tracking-tight">Personals</h1>

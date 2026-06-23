@@ -37,7 +37,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-14 h-14 rounded-2xl bg-accent-strong flex items-center justify-center icon-badge mx-auto mb-4">
-            <span className="text-white font-semibold text-[24px] leading-none">P</span>
+            <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="white" strokeWidth="2"/><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="white" strokeWidth="2" strokeLinecap="round"/><circle cx="16.5" cy="13" r="1.25" fill="white"/></svg>
           </div>
           <h1 className="text-[24px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">Personals</h1>
           <p className="text-[13px] text-gray-400 dark:text-ink-dim mt-1 font-normal">

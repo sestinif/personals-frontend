@@ -30,6 +30,44 @@ function getExpenseLabel(expense) {
   return parts.join(' · ')
 }
 
+// Bank mark: tries the real bank logo on a light chip, and falls back to the
+// brand-colored badge if there's no domain or the logo image fails to load.
+function BankMark({ brand }) {
+  const [failed, setFailed] = useState(false)
+
+  if (failed || !brand.domain) {
+    return (
+      <div
+        className="h-11 px-3 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover/card:scale-105"
+        style={{
+          background: brand.bg,
+          color: brand.fg,
+          boxShadow: brand.ring
+            ? `inset 0 0 0 1px ${brand.ring}, 0 4px 14px rgba(0,0,0,0.25)`
+            : '0 4px 14px rgba(0,0,0,0.25)',
+        }}
+      >
+        <span className="text-[13px] font-semibold tracking-wide whitespace-nowrap">{brand.label}</span>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="h-11 w-11 rounded-xl flex items-center justify-center bg-[#F4F3F1] transition-transform duration-300 group-hover/card:scale-105"
+      style={{ boxShadow: '0 4px 14px rgba(0,0,0,0.25)', padding: '6px' }}
+    >
+      <img
+        src={`https://logo.clearbit.com/${brand.domain}`}
+        alt={brand.label}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className="w-full h-full object-contain"
+      />
+    </div>
+  )
+}
+
 function getRemainingTime(endDate) {
   const now = new Date()
   const end = new Date(endDate)
@@ -72,18 +110,7 @@ export default function AccountCard({
       >
         <div className="flex items-center gap-3.5">
           {brand ? (
-            <div
-              className="h-11 px-3 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover/card:scale-105"
-              style={{
-                background: brand.bg,
-                color: brand.fg,
-                boxShadow: brand.ring
-                  ? `inset 0 0 0 1px ${brand.ring}, 0 4px 14px rgba(0,0,0,0.25)`
-                  : '0 4px 14px rgba(0,0,0,0.25)',
-              }}
-            >
-              <span className="text-[13px] font-semibold tracking-wide whitespace-nowrap">{brand.label}</span>
-            </div>
+            <BankMark brand={brand} />
           ) : (
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center text-white icon-badge transition-transform duration-300 group-hover/card:scale-105"
