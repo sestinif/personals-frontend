@@ -39,18 +39,18 @@ export default function Modal({ open, onClose, title, children }) {
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
     >
       <div
-        className={`relative bg-white dark:bg-gradient-to-b dark:from-[#181830] dark:to-[#12122a] rounded-2xl w-full max-w-md transition-all duration-300 ease-out border border-gray-200/50 dark:border-transparent overflow-hidden ${
+        className={`relative bg-white dark:bg-surface2 rounded-2xl w-full max-w-md transition-all duration-300 ease-out border border-gray-200/50 dark:border-line-strong overflow-hidden ${
           isVisible
             ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-[0.97] translate-y-3'
         }`}
-        style={{ boxShadow: isVisible ? '0 25px 70px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04) inset, 0 1px 0 rgba(255,255,255,0.07) inset, 0 -1px 4px rgba(0,0,0,0.1) inset' : undefined }}
+        style={{ boxShadow: isVisible ? '0 25px 70px -12px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.05) inset' : undefined }}
       >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100/80 dark:border-white/[0.06]">
-          <h3 className="text-[17px] font-bold text-gray-900 dark:text-white tracking-tight">{title}</h3>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100/80 dark:border-line">
+          <h3 className="text-[17px] font-semibold text-gray-900 dark:text-ink tracking-tight">{title}</h3>
           <button
             onClick={onClose}
-            className="p-2 -mr-2 rounded-xl text-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200"
+            className="p-2 -mr-2 rounded-xl text-gray-300 dark:text-ink-faint hover:text-gray-600 dark:hover:text-ink hover:bg-gray-50 dark:hover:bg-white/[0.06] transition-all duration-200"
           >
             <XIcon className="w-5 h-5" />
           </button>

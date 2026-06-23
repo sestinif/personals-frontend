@@ -60,9 +60,7 @@ export default function AccountCard({
   return (
     <div className="card-premium overflow-hidden group/card">
       {/* Colored top accent line */}
-      <div className="h-[3px] w-full relative" style={{ background: `linear-gradient(90deg, ${account.color}, ${account.color}88)` }}>
-        <div className="absolute inset-x-[15%] top-0 h-[3px] blur-[4px] opacity-60" style={{ background: account.color }} />
-      </div>
+      <div className="h-[3px] w-full" style={{ background: `linear-gradient(90deg, ${account.color}, ${account.color}66)` }} />
 
       {/* Header */}
       <div
@@ -81,8 +79,8 @@ export default function AccountCard({
             <AccountIcon icon={account.icon} className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white tracking-tight">{account.name}</h3>
-            <p className="text-[13px] text-gray-400 font-medium">
+            <h3 className="font-semibold text-gray-900 dark:text-ink tracking-tight">{account.name}</h3>
+            <p className="text-[13px] text-gray-400 dark:text-ink-dim font-normal">
               {expenses.length} {expenses.length === 1 ? 'spesa' : 'spese'} attive
             </p>
           </div>
@@ -91,28 +89,28 @@ export default function AccountCard({
           <div className={`flex items-center gap-0.5 transition-all duration-200 ${showActions ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'}`}>
             <button
               onClick={() => onEditAccount(account)}
-              className="p-2 rounded-lg text-gray-300 hover:text-brand-600 hover:bg-brand-50 transition-all"
+              className="p-2 rounded-lg text-gray-300 dark:text-ink-faint hover:text-brand-600 dark:hover:text-accent hover:bg-brand-50 dark:hover:bg-accent/[0.14] transition-all"
               title="Modifica conto"
             >
               <PencilIcon className="w-4 h-4" />
             </button>
             <button
               onClick={() => onDeleteAccount(account.id)}
-              className="p-2 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition-all"
+              className="p-2 rounded-lg text-gray-300 dark:text-ink-faint hover:text-red-500 dark:hover:text-neg hover:bg-red-50 dark:hover:bg-neg/[0.12] transition-all"
               title="Elimina conto"
             >
               <TrashIcon className="w-4 h-4" />
             </button>
           </div>
           <div className="text-right">
-            <p className="text-xl font-bold text-gray-900 dark:text-white font-number tracking-tight">{formatCurrency(total)}</p>
-            <p className="text-[11px] text-gray-300 font-semibold uppercase tracking-wider">/mese</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-ink font-number tracking-tight tabular-nums">{formatCurrency(total)}</p>
+            <p className="text-[11px] text-gray-300 dark:text-ink-faint font-medium uppercase tracking-wider">/mese</p>
           </div>
         </div>
       </div>
 
       {/* Expenses list */}
-      <div className="border-t border-gray-50/80 dark:border-white/[0.04]">
+      <div className="border-t border-gray-50/80 dark:border-line">
         {expenses.map((expense, index) => (
           <div
             key={expense.id}
@@ -126,11 +124,11 @@ export default function AccountCard({
               />
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <p className="text-[14px] font-medium text-gray-700 dark:text-gray-300 truncate group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                  <p className="text-[14px] font-medium text-gray-700 dark:text-ink-dim truncate group-hover:text-gray-900 dark:group-hover:text-ink transition-colors">
                     {expense.name}
                   </p>
                   {expense.expense_type === 'financing' && (
-                    <span className="flex-shrink-0 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200/50 dark:border-amber-800/30">
+                    <span className="flex-shrink-0 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-md bg-amber-100 dark:bg-amber-400/[0.14] text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-400/20">
                       Fin
                     </span>
                   )}
@@ -138,8 +136,8 @@ export default function AccountCard({
                 {(isYearly(expense) || expense.renewal_day || (expense.expense_type === 'financing' && expense.end_date)) && (
                   <p className={`text-[11px] font-medium ${
                     expense.expense_type === 'financing' && expense.end_date && getRemainingTime(expense.end_date) === 'Scaduto'
-                      ? 'text-red-400'
-                      : 'text-gray-300 dark:text-gray-500'
+                      ? 'text-red-400 dark:text-neg'
+                      : 'text-gray-300 dark:text-ink-faint'
                   }`}>
                     {getExpenseLabel(expense)}
                   </p>
@@ -150,23 +148,23 @@ export default function AccountCard({
               <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-1 group-hover:translate-x-0">
                 <button
                   onClick={() => onEditExpense(expense)}
-                  className="p-1.5 rounded-lg text-gray-300 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                  className="p-1.5 rounded-lg text-gray-300 dark:text-ink-faint hover:text-brand-600 dark:hover:text-accent hover:bg-brand-50 dark:hover:bg-accent/[0.14] transition-all"
                 >
                   <PencilIcon className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => onDeleteExpense(expense.id)}
-                  className="p-1.5 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition-all"
+                  className="p-1.5 rounded-lg text-gray-300 dark:text-ink-faint hover:text-red-500 dark:hover:text-neg hover:bg-red-50 dark:hover:bg-neg/[0.12] transition-all"
                 >
                   <TrashIcon className="w-3.5 h-3.5" />
                 </button>
               </div>
               <div className="text-right w-28">
-                <span className="text-[14px] font-semibold text-gray-600 dark:text-gray-300 font-number">
+                <span className="text-[14px] font-semibold text-gray-600 dark:text-ink font-number tabular-nums">
                   {formatCurrency(expense.amount)}{isYearly(expense) ? '/a' : ''}
                 </span>
                 {isYearly(expense) && (
-                  <p className="text-[10px] text-gray-300 dark:text-gray-500 font-number font-medium">
+                  <p className="text-[10px] text-gray-300 dark:text-ink-faint font-number font-medium tabular-nums">
                     {formatCurrency(expense.amount / 12)}/m
                   </p>
                 )}
@@ -178,20 +176,20 @@ export default function AccountCard({
         {expenses.length === 0 && (
           <div className="px-6 py-10 text-center">
             <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/[0.04] flex items-center justify-center mx-auto mb-3">
-              <PlusIcon className="w-5 h-5 text-gray-300 dark:text-gray-600" />
+              <PlusIcon className="w-5 h-5 text-gray-300 dark:text-ink-faint" />
             </div>
-            <p className="text-sm text-gray-400 dark:text-gray-600 font-medium">Nessuna spesa registrata</p>
+            <p className="text-sm text-gray-400 dark:text-ink-faint font-medium">Nessuna spesa registrata</p>
           </div>
         )}
       </div>
 
       {/* Add expense button */}
-      <div className="border-t border-gray-100/80 dark:border-white/[0.04] px-6 py-3.5">
+      <div className="border-t border-gray-100/80 dark:border-line px-6 py-3.5">
         <button
           onClick={() => onAddExpense(account.id)}
-          className="flex items-center gap-2 text-[13px] font-semibold text-brand-500 hover:text-brand-700 transition-all group/btn"
+          className="flex items-center gap-2 text-[13px] font-semibold text-brand-500 dark:text-accent hover:text-brand-700 dark:hover:text-accent-strong transition-all group/btn"
         >
-          <div className="p-1 rounded-md bg-brand-50 group-hover/btn:bg-brand-100 transition-colors">
+          <div className="p-1 rounded-md bg-brand-50 dark:bg-accent/[0.14] group-hover/btn:bg-brand-100 dark:group-hover/btn:bg-accent/25 transition-colors">
             <PlusIcon className="w-3.5 h-3.5" />
           </div>
           <span>Aggiungi spesa</span>

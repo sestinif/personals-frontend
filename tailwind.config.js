@@ -9,26 +9,42 @@ export default {
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
+        /* ===== "Dark raffinato" palette ===== */
+        bg: '#0B0B0D',          // page background (near-black)
+        surface: '#15151A',      // card / surface
+        surface2: '#1C1C22',     // elevated: inputs / hover / modal
+        line: 'rgba(255,255,255,0.08)',      // default border
+        'line-strong': 'rgba(255,255,255,0.14)', // emphasis border
+        ink: '#F4F3F1',          // text primary (ivory)
+        'ink-dim': '#A8A6A2',    // text secondary (muted)
+        'ink-faint': '#7A7880',  // text tertiary (hint)
+        accent: '#8B7BFF',       // violet accent / primary
+        'accent-strong': '#7C5CFC', // violet strong (button)
+        pos: '#34D399',          // positive / gain (emerald)
+        neg: '#FB7185',          // negative / destructive (rose)
+
+        /* brand scale remapped to the violet accent so every existing
+           brand-* utility adopts the new accent automatically */
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
-        }
+          50: '#f1efff',
+          100: '#e6e2ff',
+          200: '#d0c8ff',
+          300: '#b3a6ff',
+          400: '#8B7BFF',
+          500: '#8B7BFF',
+          600: '#7C5CFC',
+          700: '#6B49E8',
+          800: '#5739c2',
+          900: '#3d2a85',
+          950: '#1f1547',
+        },
       },
       boxShadow: {
-        'glass': '0 0 0 1px rgba(255,255,255,0.1), 0 8px 40px rgba(0,0,0,0.08)',
-        'card': '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
-        'card-hover': '0 10px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
-        'premium': '0 20px 60px -12px rgba(79, 70, 229, 0.25)',
-        'glow': '0 0 20px rgba(99, 102, 241, 0.15)',
+        'glass': '0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35)',
+        'card': '0 1px 2px rgba(0,0,0,0.3)',
+        'card-hover': '0 12px 40px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3)',
+        'premium': '0 24px 60px -16px rgba(0, 0, 0, 0.6)',
+        'glow': '0 0 0 1px rgba(139, 123, 255, 0.18)',
       },
       animation: {
         'fade-in': 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',

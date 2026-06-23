@@ -32,7 +32,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
     onSubmit(form)
   }
 
-  const labelClass = 'block text-[13px] font-semibold text-gray-500 dark:text-gray-400 mb-2.5 uppercase tracking-wide'
+  const labelClass = 'block text-[13px] font-semibold text-gray-500 dark:text-ink-dim mb-2.5 uppercase tracking-wide'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -45,8 +45,8 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder="es. Intesa San Paolo"
-          className={`w-full px-4 py-3 bg-gray-50/50 dark:bg-white/[0.03] border rounded-xl text-[14px] text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-gray-600 transition-all duration-200 outline-none input-depth ${
-            focused ? 'border-brand-400 dark:border-brand-500/40 bg-white dark:bg-white/[0.05]' : 'border-gray-200/80 dark:border-white/[0.06] hover:border-gray-300 dark:hover:border-white/[0.12]'
+          className={`w-full px-4 py-3 bg-gray-50/50 dark:bg-surface2 border rounded-xl text-[14px] text-gray-900 dark:text-ink placeholder-gray-300 dark:placeholder-ink-faint transition-all duration-200 outline-none input-depth ${
+            focused ? 'border-brand-400 dark:border-accent/55 bg-white dark:bg-surface2' : 'border-gray-200/80 dark:border-line hover:border-gray-300 dark:hover:border-line-strong'
           }`}
           required
           autoFocus
@@ -62,8 +62,8 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
               onClick={() => setForm({ ...form, icon: opt.value })}
               className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl border text-[13px] font-medium transition-all duration-200 ${
                 form.icon === opt.value
-                  ? 'border-brand-400 dark:border-brand-500/40 bg-brand-50 dark:bg-brand-950/30 text-brand-700 dark:text-brand-300 shadow-sm shadow-brand-500/10'
-                  : 'border-gray-200/80 dark:border-white/[0.06] text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/[0.12] hover:bg-gray-50 dark:hover:bg-white/[0.03]'
+                  ? 'border-brand-400 dark:border-accent/45 bg-brand-50 dark:bg-accent/[0.14] text-brand-700 dark:text-accent shadow-sm'
+                  : 'border-gray-200/80 dark:border-line text-gray-500 dark:text-ink-dim hover:border-gray-300 dark:hover:border-line-strong hover:bg-gray-50 dark:hover:bg-white/[0.04]'
               }`}
             >
               <AccountIcon icon={opt.value} className="w-4 h-4" />
@@ -82,7 +82,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
               onClick={() => setForm({ ...form, color: c })}
               className={`w-9 h-9 rounded-xl transition-all duration-200 ${
                 form.color === c
-                  ? 'ring-2 ring-offset-2 dark:ring-offset-[#16162a] ring-gray-300 dark:ring-brand-400/50 scale-110 shadow-lg'
+                  ? 'ring-2 ring-offset-2 dark:ring-offset-surface2 ring-gray-300 dark:ring-accent/60 scale-110 shadow-lg'
                   : 'hover:scale-110 shadow-md'
               }`}
               style={{
@@ -97,13 +97,13 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-3 text-[14px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-white/[0.08] rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200"
+          className="flex-1 px-4 py-3 text-[14px] font-semibold text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong hover:text-gray-700 dark:hover:text-ink transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
         >
           Annulla
         </button>
         <button
           type="submit"
-          className="flex-1 px-4 py-3 text-[14px] font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all duration-200 shadow-md shadow-brand-500/20 btn-premium"
+          className="flex-1 px-4 py-3 text-[14px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
           {account ? 'Aggiorna' : 'Aggiungi'}
         </button>

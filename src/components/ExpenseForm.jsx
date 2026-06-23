@@ -37,17 +37,17 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
     onSubmit(data)
   }
 
-  const inputClass = (name) => `w-full px-3.5 py-2.5 bg-gray-50/50 dark:bg-white/[0.03] border rounded-xl text-[14px] text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-gray-600 transition-all duration-200 outline-none input-depth ${
+  const inputClass = (name) => `w-full px-3.5 py-2.5 bg-gray-50/50 dark:bg-surface2 border rounded-xl text-[14px] text-gray-900 dark:text-ink placeholder-gray-300 dark:placeholder-ink-faint transition-all duration-200 outline-none input-depth ${
     focused === name
-      ? 'border-brand-400 dark:border-brand-500/40 bg-white dark:bg-white/[0.05]'
-      : 'border-gray-200/80 dark:border-white/[0.06] hover:border-gray-300 dark:hover:border-white/[0.12]'
+      ? 'border-brand-400 dark:border-accent/55 bg-white dark:bg-surface2'
+      : 'border-gray-200/80 dark:border-line hover:border-gray-300 dark:hover:border-line-strong'
   }`
-  const labelClass = 'block text-[11px] font-semibold text-gray-400 dark:text-gray-500 mb-1.5 uppercase tracking-wider'
+  const labelClass = 'block text-[11px] font-semibold text-gray-400 dark:text-ink-faint mb-1.5 uppercase tracking-wider'
 
   const toggleBtn = (active) => `flex-1 py-2 text-[12px] font-semibold rounded-lg transition-all duration-200 ${
     active
-      ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
-      : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+      ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
+      : 'text-gray-400 dark:text-ink-dim hover:text-gray-600 dark:hover:text-ink'
   }`
 
   return (
@@ -96,7 +96,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
         <div>
           <label className={labelClass}>Importo</label>
           <div className="relative">
-            <span className={`absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-wider transition-colors ${focused === 'amount' ? 'text-brand-500' : 'text-gray-300 dark:text-gray-600'}`}>EUR</span>
+            <span className={`absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-wider transition-colors ${focused === 'amount' ? 'text-brand-500 dark:text-accent' : 'text-gray-300 dark:text-ink-faint'}`}>EUR</span>
             <input
               type="number"
               step="0.01"
@@ -111,7 +111,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
             />
           </div>
           {form.frequency === 'yearly' && form.amount && (
-            <p className="text-[10px] text-brand-400/70 font-medium mt-1 pl-0.5">
+            <p className="text-[10px] text-brand-400/70 dark:text-accent/80 font-medium mt-1 pl-0.5">
               = {(parseFloat(form.amount) / 12).toFixed(2)}/mese
             </p>
           )}
@@ -162,13 +162,13 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-white/[0.08] rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200"
+          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong hover:text-gray-700 dark:hover:text-ink transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
         >
           Annulla
         </button>
         <button
           type="submit"
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all duration-200 shadow-md shadow-brand-500/20 btn-premium"
+          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
           {expense ? 'Aggiorna' : 'Aggiungi'}
         </button>

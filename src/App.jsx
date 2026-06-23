@@ -118,16 +118,16 @@ function AppContent({ onLogout, user }) {
       <div className="ambient-orb ambient-orb-1" />
       <div className="ambient-orb ambient-orb-2" />
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-[280px]' : 'w-0 overflow-hidden'} flex-shrink-0 bg-white/80 dark:bg-[#0d0d1a]/90 glass sidebar-depth border-r border-gray-200/50 dark:border-white/[0.04] flex flex-col transition-all duration-400 ease-out`}>
+      <aside className={`${sidebarOpen ? 'w-[280px]' : 'w-0 overflow-hidden'} flex-shrink-0 bg-white/80 dark:bg-bg/90 glass sidebar-depth border-r border-gray-200/50 dark:border-line flex flex-col transition-all duration-400 ease-out`}>
         {/* Logo */}
         <div className="px-6 py-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-[14px] bg-gradient-to-br from-brand-400 to-brand-700 flex items-center justify-center icon-badge">
-              <span className="text-white font-extrabold text-[18px] leading-none" style={{ fontFamily: 'Inter' }}>P</span>
+            <div className="w-10 h-10 rounded-[14px] bg-accent-strong flex items-center justify-center icon-badge">
+              <span className="text-white font-semibold text-[18px] leading-none" style={{ fontFamily: 'Inter' }}>P</span>
             </div>
             <div>
-              <h1 className="text-[16px] font-extrabold text-gray-900 dark:text-white tracking-tight">Personals</h1>
-              <p className="text-[11px] text-gray-300 dark:text-gray-500 font-semibold uppercase tracking-widest">Expense tracker</p>
+              <h1 className="text-[16px] font-semibold text-gray-900 dark:text-ink tracking-tight">Personals</h1>
+              <p className="text-[11px] text-gray-300 dark:text-ink-faint font-medium uppercase tracking-widest">Expense tracker</p>
             </div>
           </div>
         </div>
@@ -137,17 +137,17 @@ function AppContent({ onLogout, user }) {
 
         {/* Navigation */}
         <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-          <p className="px-3 pb-2 text-[10px] font-bold text-gray-300 dark:text-gray-600 uppercase tracking-[0.15em]">Menu</p>
+          <p className="px-3 pb-2 text-[10px] font-semibold text-gray-300 dark:text-ink-faint uppercase tracking-[0.15em]">Menu</p>
           {navItems.map((item) => {
             const isActive = activeView === item.id
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveView(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-medium transition-all duration-200 ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 ${
                   isActive
-                    ? 'bg-brand-50/80 dark:bg-brand-950/30 text-brand-700 dark:text-brand-300 shadow-sm dark:shadow-brand-500/10 nav-active'
-                    : 'text-gray-500 dark:text-gray-500 hover:bg-gray-50/80 dark:hover:bg-white/[0.03] hover:text-gray-800 dark:hover:text-gray-300'
+                    ? 'bg-brand-50/80 dark:bg-accent/[0.14] text-brand-700 dark:text-accent shadow-sm nav-active'
+                    : 'text-gray-500 dark:text-ink-dim hover:bg-gray-50/80 dark:hover:bg-white/[0.03] hover:text-gray-800 dark:hover:text-ink'
                 }`}
               >
                 {item.color ? (
@@ -162,15 +162,15 @@ function AppContent({ onLogout, user }) {
                   </div>
                 ) : (
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
-                    isActive ? 'bg-brand-100 dark:bg-brand-900/50' : 'bg-gray-100/60 dark:bg-white/[0.05]'
+                    isActive ? 'bg-brand-100 dark:bg-accent/[0.14]' : 'bg-gray-100/60 dark:bg-white/[0.05]'
                   }`}>
-                    <item.icon className={`w-4 h-4 ${isActive ? 'text-brand-600 dark:text-brand-400' : 'text-gray-400'}`} />
+                    <item.icon className={`w-4 h-4 ${isActive ? 'text-brand-600 dark:text-accent' : 'text-gray-400 dark:text-ink-faint'}`} />
                   </div>
                 )}
                 <span className="truncate">{item.label}</span>
                 {item.accountId && (
-                  <span className={`ml-auto text-[11px] font-bold tabular-nums px-2 py-0.5 rounded-full ${
-                    isActive ? 'bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400' : 'bg-gray-100/60 dark:bg-white/[0.05] text-gray-400'
+                  <span className={`ml-auto text-[11px] font-semibold tabular-nums px-2 py-0.5 rounded-full ${
+                    isActive ? 'bg-brand-100 dark:bg-accent/[0.14] text-brand-600 dark:text-accent' : 'bg-gray-100/60 dark:bg-white/[0.05] text-gray-400 dark:text-ink-faint'
                   }`}>
                     {getExpensesForAccount(item.accountId).length}
                   </span>
@@ -180,20 +180,20 @@ function AppContent({ onLogout, user }) {
           })}
 
           {/* Actions inside nav */}
-          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-white/[0.04] space-y-1">
+          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-line space-y-1">
             <button
               onClick={() => setExpenseModal({ open: true, expense: null, defaultAccountId: accounts[0]?.id })}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 transition-all duration-200 shadow-md shadow-brand-500/20 btn-premium btn-glow"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <PlusIcon className="w-5 h-5" />
               <span>Nuova spesa</span>
             </button>
             <button
               onClick={() => setAccountModal({ open: true, account: null })}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium text-gray-400 hover:bg-gray-50 dark:hover:bg-white/[0.04] hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium text-gray-400 dark:text-ink-dim hover:bg-gray-50 dark:hover:bg-white/[0.04] hover:text-gray-600 dark:hover:text-ink transition-all duration-200"
             >
               <div className="w-7 h-7 rounded-lg bg-gray-100/60 dark:bg-white/[0.05] flex items-center justify-center">
-                <PlusIcon className="w-4 h-4 text-gray-400" />
+                <PlusIcon className="w-4 h-4 text-gray-400 dark:text-ink-faint" />
               </div>
               <span>Nuovo conto</span>
             </button>
@@ -204,12 +204,12 @@ function AppContent({ onLogout, user }) {
         <div className="px-3 pb-4 space-y-1">
           <div className="mx-1 mb-2 divider-glow" />
           <div className="flex items-center justify-between px-3 py-2">
-            <span className="text-[11px] font-bold text-gray-300 dark:text-gray-600 uppercase tracking-wider">Tema</span>
+            <span className="text-[11px] font-semibold text-gray-300 dark:text-ink-faint uppercase tracking-wider">Tema</span>
             <ThemeToggle />
           </div>
           <button
             onClick={onLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium text-gray-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-500 transition-all duration-200"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium text-gray-400 dark:text-ink-dim hover:bg-red-50 dark:hover:bg-neg/[0.12] hover:text-red-500 dark:hover:text-neg transition-all duration-200"
           >
             <div className="w-7 h-7 rounded-lg bg-gray-100/60 dark:bg-white/[0.05] flex items-center justify-center">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -224,11 +224,11 @@ function AppContent({ onLogout, user }) {
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 glass border-b border-gray-200/50 dark:border-white/[0.04]">
+        <div className="sticky top-0 z-10 glass border-b border-gray-200/50 dark:border-line">
           <div className="px-8 py-4 flex items-center justify-between">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2.5 -ml-2.5 rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-white/80 dark:hover:bg-white/[0.05] transition-all duration-200"
+              className="p-2.5 -ml-2.5 rounded-xl text-gray-400 dark:text-ink-dim hover:text-gray-600 dark:hover:text-ink hover:bg-white/80 dark:hover:bg-white/[0.05] transition-all duration-200"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -236,7 +236,7 @@ function AppContent({ onLogout, user }) {
             </button>
             <button
               onClick={() => setExpenseModal({ open: true, expense: null, defaultAccountId: accounts[0]?.id })}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all duration-200 shadow-md shadow-brand-500/20 btn-premium"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <PlusIcon className="w-4 h-4" />
               Nuova spesa
@@ -251,8 +251,8 @@ function AppContent({ onLogout, user }) {
               <Dashboard data={dashboard} />
               <div className="mt-10 space-y-5">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-[18px] font-bold text-gray-900 dark:text-white tracking-tight text-depth">Tutti i conti</h2>
-                  <span className="text-[12px] font-semibold text-gray-300 dark:text-gray-600 uppercase tracking-wider">{accounts.length} conti</span>
+                  <h2 className="text-[18px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">Tutti i conti</h2>
+                  <span className="text-[12px] font-medium text-gray-300 dark:text-ink-faint uppercase tracking-wider">{accounts.length} conti</span>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 stagger">
                   {loading ? (
@@ -301,8 +301,8 @@ function AppContent({ onLogout, user }) {
                       <AccountIcon icon={account.icon} className="w-7 h-7" />
                     </div>
                     <div>
-                      <h1 className="text-[28px] font-extrabold text-gray-900 dark:text-white tracking-tight text-depth">{account.name}</h1>
-                      <p className="text-gray-400 dark:text-gray-500 font-medium">
+                      <h1 className="text-[28px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">{account.name}</h1>
+                      <p className="text-gray-400 dark:text-ink-dim font-normal">
                         {getExpensesForAccount(accountId).length} spese ricorrenti
                       </p>
                     </div>
@@ -361,11 +361,11 @@ function AppContent({ onLogout, user }) {
         title="Conferma eliminazione"
       >
         <div className="space-y-5">
-          <div className="p-4 rounded-xl bg-red-50/50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-            <p className="text-[14px] text-gray-600 dark:text-gray-300 leading-relaxed">
-              Sei sicuro di voler eliminare <strong className="text-gray-900 dark:text-white">{deleteConfirm.name}</strong>?
+          <div className="p-4 rounded-xl bg-red-50/50 dark:bg-neg/[0.08] border border-red-100 dark:border-neg/20">
+            <p className="text-[14px] text-gray-600 dark:text-ink-dim leading-relaxed">
+              Sei sicuro di voler eliminare <strong className="text-gray-900 dark:text-ink">{deleteConfirm.name}</strong>?
               {deleteConfirm.type === 'account' && (
-                <span className="block mt-1.5 text-[13px] text-red-500 font-medium">
+                <span className="block mt-1.5 text-[13px] text-red-500 dark:text-neg font-medium">
                   Tutte le spese associate verranno eliminate permanentemente.
                 </span>
               )}
@@ -374,7 +374,7 @@ function AppContent({ onLogout, user }) {
           <div className="flex gap-3">
             <button
               onClick={() => setDeleteConfirm({ open: false, type: null, id: null, name: '' })}
-              className="flex-1 px-4 py-3 text-[14px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-white/[0.08] rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] transition-all duration-200"
+              className="flex-1 px-4 py-3 text-[14px] font-semibold text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-surface2 border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
               Annulla
             </button>
@@ -383,7 +383,7 @@ function AppContent({ onLogout, user }) {
                 if (deleteConfirm.type === 'expense') handleDeleteExpense(deleteConfirm.id)
                 else handleDeleteAccount(deleteConfirm.id)
               }}
-              className="flex-1 px-4 py-3 text-[14px] font-semibold text-white bg-gradient-to-r from-red-600 to-red-500 rounded-xl hover:from-red-700 hover:to-red-600 transition-all duration-200 shadow-md shadow-red-500/20"
+              className="flex-1 px-4 py-3 text-[14px] font-semibold text-white bg-red-600 hover:bg-red-700 dark:bg-neg dark:hover:bg-rose-500 rounded-xl transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-neg/50"
             >
               Elimina
             </button>

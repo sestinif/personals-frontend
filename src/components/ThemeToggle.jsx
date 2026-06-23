@@ -37,10 +37,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="relative w-14 h-7 rounded-full p-0.5 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+      className="relative w-14 h-7 rounded-full p-0.5 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:ring-offset-2 dark:focus:ring-offset-bg"
       style={{
         background: dark
-          ? 'linear-gradient(135deg, #312e81, #1e1b4b)'
+          ? 'rgba(139,123,255,0.18)'
           : 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
       }}
       title={dark ? 'Passa a tema chiaro' : 'Passa a tema scuro'}
@@ -48,7 +48,7 @@ export default function ThemeToggle() {
       <div
         className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ease-out shadow-md ${
           dark
-            ? 'translate-x-7 bg-brand-500'
+            ? 'translate-x-7 bg-accent-strong'
             : 'translate-x-0 bg-white'
         }`}
       >

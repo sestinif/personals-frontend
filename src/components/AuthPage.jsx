@@ -29,18 +29,18 @@ export default function AuthPage({ onAuth, apiUrl }) {
     }
   }
 
-  const inputClass = 'w-full px-4 py-3 bg-gray-50/50 dark:bg-white/[0.03] border border-gray-200/80 dark:border-white/[0.06] rounded-xl text-[14px] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-all duration-200 outline-none input-depth focus:border-brand-400 dark:focus:border-brand-500/40 focus:bg-white dark:focus:bg-white/[0.05]'
+  const inputClass = 'w-full px-4 py-3 bg-gray-50/50 dark:bg-surface2 border border-gray-200/80 dark:border-line rounded-xl text-[14px] text-gray-900 dark:text-ink placeholder-gray-400 dark:placeholder-ink-faint transition-all duration-200 outline-none input-depth focus:border-brand-400 dark:focus:border-accent/55 focus:bg-white dark:focus:bg-surface2'
 
   return (
     <div className="min-h-screen bg-depth bg-noise flex items-center justify-center p-4 transition-colors duration-300">
       <div className="w-full max-w-[400px]">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-400 to-brand-700 flex items-center justify-center icon-badge mx-auto mb-4">
-            <span className="text-white font-extrabold text-[24px] leading-none">P</span>
+          <div className="w-14 h-14 rounded-2xl bg-accent-strong flex items-center justify-center icon-badge mx-auto mb-4">
+            <span className="text-white font-semibold text-[24px] leading-none">P</span>
           </div>
-          <h1 className="text-[24px] font-extrabold text-gray-900 dark:text-white tracking-tight text-depth">Personals</h1>
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 mt-1 font-medium">
+          <h1 className="text-[24px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">Personals</h1>
+          <p className="text-[13px] text-gray-400 dark:text-ink-dim mt-1 font-normal">
             {isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}
           </p>
         </div>
@@ -54,8 +54,8 @@ export default function AuthPage({ onAuth, apiUrl }) {
               onClick={() => { setIsLogin(true); setError('') }}
               className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
                 isLogin
-                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
+                  : 'text-gray-500 dark:text-ink-dim hover:text-gray-700 dark:hover:text-ink'
               }`}
             >
               Accedi
@@ -65,8 +65,8 @@ export default function AuthPage({ onAuth, apiUrl }) {
               onClick={() => { setIsLogin(false); setError('') }}
               className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
                 !isLogin
-                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-white toggle-pill-active'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
+                  : 'text-gray-500 dark:text-ink-dim hover:text-gray-700 dark:hover:text-ink'
               }`}
             >
               Registrati
@@ -75,7 +75,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-[13px] font-semibold text-gray-500 dark:text-gray-400 mb-2">
+              <label className="block text-[13px] font-semibold text-gray-500 dark:text-ink-dim mb-2">
                 Username
               </label>
               <input
@@ -90,7 +90,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
               />
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-gray-500 dark:text-gray-400 mb-2">
+              <label className="block text-[13px] font-semibold text-gray-500 dark:text-ink-dim mb-2">
                 Password
               </label>
               <input
@@ -105,15 +105,15 @@ export default function AuthPage({ onAuth, apiUrl }) {
             </div>
 
             {error && (
-              <div className="px-4 py-3 rounded-xl bg-red-50/80 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30">
-                <p className="text-[13px] font-medium text-red-600 dark:text-red-400">{error}</p>
+              <div className="px-4 py-3 rounded-xl bg-red-50/80 dark:bg-neg/[0.08] border border-red-200/50 dark:border-neg/20">
+                <p className="text-[13px] font-medium text-red-600 dark:text-neg">{error}</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-3 text-[14px] font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-500 rounded-xl hover:from-brand-700 hover:to-brand-600 transition-all duration-200 shadow-md shadow-brand-500/20 btn-premium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 text-[14px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">
@@ -128,11 +128,11 @@ export default function AuthPage({ onAuth, apiUrl }) {
           </form>
         </div>
 
-        <p className="text-center text-[12px] text-gray-400 dark:text-gray-600 mt-6 font-medium">
+        <p className="text-center text-[12px] text-gray-400 dark:text-ink-faint mt-6 font-medium">
           {isLogin ? 'Non hai un account? ' : 'Hai già un account? '}
           <button
             onClick={() => { setIsLogin(!isLogin); setError('') }}
-            className="text-brand-500 hover:text-brand-600 dark:text-brand-400 font-semibold"
+            className="text-brand-500 hover:text-brand-600 dark:text-accent dark:hover:text-accent-strong font-semibold"
           >
             {isLogin ? 'Registrati' : 'Accedi'}
           </button>

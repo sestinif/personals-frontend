@@ -19,9 +19,9 @@ function ToastItem({ toast, onRemove }) {
   }, [onRemove])
 
   const colors = {
-    success: 'bg-emerald-500 dark:bg-emerald-600',
-    error: 'bg-red-500 dark:bg-red-600',
-    info: 'bg-brand-500 dark:bg-brand-600',
+    success: 'bg-emerald-500 dark:bg-pos dark:text-bg',
+    error: 'bg-red-500 dark:bg-neg dark:text-bg',
+    info: 'bg-brand-500 dark:bg-accent-strong',
   }
 
   const icons = {

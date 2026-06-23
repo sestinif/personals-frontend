@@ -34,7 +34,7 @@ export default function DonutChart({ segments, size = 160, strokeWidth = 20 }) {
           r={radius}
           fill="none"
           stroke="currentColor"
-          className="text-gray-100 dark:text-white/[0.06]"
+          className="text-black/[0.05] dark:text-white/[0.06]"
           strokeWidth={strokeWidth}
         />
         {/* Segments */}
@@ -56,18 +56,18 @@ export default function DonutChart({ segments, size = 160, strokeWidth = 20 }) {
               strokeDashoffset={dashOffset}
               strokeLinecap="round"
               className="transition-all duration-1000 ease-out"
-              style={{ transitionDelay: `${i * 150 + 400}ms`, filter: `drop-shadow(0 0 4px ${arc.color}40)` }}
+              style={{ transitionDelay: `${i * 150 + 400}ms` }}
             />
           )
         })}
       </svg>
       {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-[11px] font-bold text-gray-300 dark:text-gray-500 uppercase tracking-wider">Totale</span>
-        <span className="text-[20px] font-bold text-gray-900 dark:text-white font-number tracking-tight">
+        <span className="text-[11px] font-medium text-ink-faint uppercase tracking-wider">Totale</span>
+        <span className="text-[20px] font-medium text-gray-900 dark:text-ink font-number tracking-tight">
           {segments.length}
         </span>
-        <span className="text-[10px] font-semibold text-gray-300 dark:text-gray-600">conti</span>
+        <span className="text-[10px] font-medium text-ink-faint">conti</span>
       </div>
     </div>
   )
