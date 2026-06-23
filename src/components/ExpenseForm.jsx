@@ -162,13 +162,13 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong hover:text-gray-700 dark:hover:text-ink transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+          className="flex-1 px-4 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong hover:text-gray-700 dark:hover:text-ink transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
         >
           Annulla
         </button>
         <button
           type="submit"
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          className="flex-1 px-4 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
           {expense ? 'Aggiorna' : 'Aggiungi'}
         </button>

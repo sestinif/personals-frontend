@@ -186,7 +186,7 @@ function AppContent({ onLogout, user }) {
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <PlusIcon className="w-5 h-5" />
-              <span>Nuova spesa</span>
+              <span className="uppercase tracking-wide">Nuova spesa</span>
             </button>
             <button
               onClick={() => setAccountModal({ open: true, account: null })}
@@ -195,7 +195,7 @@ function AppContent({ onLogout, user }) {
               <div className="w-7 h-7 rounded-lg bg-gray-100/60 dark:bg-white/[0.05] flex items-center justify-center">
                 <PlusIcon className="w-4 h-4 text-gray-400 dark:text-ink-faint" />
               </div>
-              <span>Nuovo conto</span>
+              <span className="uppercase tracking-wide">Nuovo conto</span>
             </button>
           </div>
         </nav>
@@ -216,7 +216,7 @@ function AppContent({ onLogout, user }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
               </svg>
             </div>
-            <span>Esci</span>
+            <span className="uppercase tracking-wide">Esci</span>
           </button>
         </div>
       </aside>
@@ -236,7 +236,7 @@ function AppContent({ onLogout, user }) {
             </button>
             <button
               onClick={() => setExpenseModal({ open: true, expense: null, defaultAccountId: accounts[0]?.id })}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <PlusIcon className="w-4 h-4" />
               Nuova spesa
@@ -374,7 +374,7 @@ function AppContent({ onLogout, user }) {
           <div className="flex gap-3">
             <button
               onClick={() => setDeleteConfirm({ open: false, type: null, id: null, name: '' })}
-              className="flex-1 px-4 py-3 text-[14px] font-semibold text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-surface2 border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+              className="flex-1 px-4 py-3 text-[14px] font-semibold uppercase tracking-wide text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-surface2 border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
               Annulla
             </button>
@@ -383,7 +383,7 @@ function AppContent({ onLogout, user }) {
                 if (deleteConfirm.type === 'expense') handleDeleteExpense(deleteConfirm.id)
                 else handleDeleteAccount(deleteConfirm.id)
               }}
-              className="flex-1 px-4 py-3 text-[14px] font-semibold text-white bg-red-600 hover:bg-red-700 dark:bg-neg dark:hover:bg-rose-500 rounded-xl transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-neg/50"
+              className="flex-1 px-4 py-3 text-[14px] font-semibold uppercase tracking-wide text-white bg-red-600 hover:bg-red-700 dark:bg-neg dark:hover:bg-rose-500 rounded-xl transition-all duration-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-neg/50"
             >
               Elimina
             </button>

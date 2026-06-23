@@ -113,7 +113,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-3 text-[14px] font-semibold text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 text-[14px] font-semibold uppercase tracking-wide text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">

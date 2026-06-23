@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AccountIcon, PlusIcon, PencilIcon, TrashIcon } from './Icons'
+import { bankBrand } from '../lib/banks'
 
 function formatCurrency(amount) {
   return new Intl.NumberFormat('it-IT', {
@@ -56,6 +57,7 @@ export default function AccountCard({
   const [showActions, setShowActions] = useState(false)
   const isYearly = isExpenseYearly
   const total = expenses.reduce((sum, e) => sum + (isYearly(e) ? e.amount / 12 : e.amount), 0)
+  const brand = bankBrand(account.name)
 
   return (
     <div className="card-premium overflow-hidden group/card">
@@ -69,15 +71,30 @@ export default function AccountCard({
         onMouseLeave={() => setShowActions(false)}
       >
         <div className="flex items-center gap-3.5">
-          <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center text-white icon-badge transition-transform duration-300 group-hover/card:scale-105"
-            style={{
-              background: `linear-gradient(135deg, ${account.color}, ${account.color}bb)`,
-              boxShadow: `0 4px 14px ${account.color}33, inset 0 1px 0 rgba(255,255,255,0.2)`,
-            }}
-          >
-            <AccountIcon icon={account.icon} className="w-5 h-5" />
-          </div>
+          {brand ? (
+            <div
+              className="h-11 px-3 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover/card:scale-105"
+              style={{
+                background: brand.bg,
+                color: brand.fg,
+                boxShadow: brand.ring
+                  ? `inset 0 0 0 1px ${brand.ring}, 0 4px 14px rgba(0,0,0,0.25)`
+                  : '0 4px 14px rgba(0,0,0,0.25)',
+              }}
+            >
+              <span className="text-[13px] font-semibold tracking-wide whitespace-nowrap">{brand.label}</span>
+            </div>
+          ) : (
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-white icon-badge transition-transform duration-300 group-hover/card:scale-105"
+              style={{
+                background: `linear-gradient(135deg, ${account.color}, ${account.color}bb)`,
+                boxShadow: `0 4px 14px ${account.color}33, inset 0 1px 0 rgba(255,255,255,0.2)`,
+              }}
+            >
+              <AccountIcon icon={account.icon} className="w-5 h-5" />
+            </div>
+          )}
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-ink tracking-tight">{account.name}</h3>
             <p className="text-[13px] text-gray-400 dark:text-ink-dim font-normal">
@@ -192,7 +209,7 @@ export default function AccountCard({
           <div className="p-1 rounded-md bg-brand-50 dark:bg-accent/[0.14] group-hover/btn:bg-brand-100 dark:group-hover/btn:bg-accent/25 transition-colors">
             <PlusIcon className="w-3.5 h-3.5" />
           </div>
-          <span>Aggiungi spesa</span>
+          <span className="uppercase tracking-wide">Aggiungi spesa</span>
         </button>
       </div>
     </div>
