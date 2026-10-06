@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Segmented from './Segmented'
+import BrandMark from './BrandMark'
 
 const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
 
@@ -35,9 +36,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
     <div className="min-h-screen bg-bg flex items-center justify-center p-4">
       <div className="w-full max-w-[380px]">
         <div className="text-center mb-7">
-          <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mx-auto mb-4">
-            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="#14141B" strokeWidth="2" /><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="#14141B" strokeWidth="2" strokeLinecap="round" /><circle cx="16.5" cy="13" r="1.25" fill="#14141B" /></svg>
-          </div>
+          <BrandMark size={48} className="mx-auto mb-4" />
           <h1 className="text-[22px] font-medium text-ink tracking-tight">Personals</h1>
           <p className="text-[13px] text-ink-dim mt-1">{isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}</p>
         </div>

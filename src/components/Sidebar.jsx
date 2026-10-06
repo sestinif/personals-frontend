@@ -1,4 +1,5 @@
 import Avatar from './Avatar'
+import BrandMark from './BrandMark'
 import { PlusIcon, ChartIcon } from './Icons'
 
 function LogoutIcon({ className }) {
@@ -18,9 +19,7 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
   return (
     <div className="w-[260px] h-full flex flex-col bg-bg border-r border-line">
       <div className="px-5 py-5 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-[10px] bg-accent flex items-center justify-center">
-          <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="#14141B" strokeWidth="2" /><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="#14141B" strokeWidth="2" strokeLinecap="round" /><circle cx="16.5" cy="13" r="1.25" fill="#14141B" /></svg>
-        </div>
+        <BrandMark size={36} />
         <div className="min-w-0">
           <div className="text-[15px] font-medium text-ink leading-tight">Personals</div>
           <div className="text-[12px] text-ink-dim">Spese ricorrenti</div>

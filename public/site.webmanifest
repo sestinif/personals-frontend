@@ -2,10 +2,10 @@
   "name": "Personals",
   "short_name": "Personals",
   "icons": [
-    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "/favicon-32.png?v=2", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png?v=2", "sizes": "180x180", "type": "image/png" }
   ],
-  "theme_color": "#7C5CFC",
-  "background_color": "#0B0B0D",
+  "theme_color": "#14141B",
+  "background_color": "#14141B",
   "display": "standalone"
 }
