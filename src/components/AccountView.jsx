@@ -2,8 +2,9 @@ import { useState } from 'react'
 import Avatar from './Avatar'
 import ExpenseLedger from './ExpenseLedger'
 import DetailSheet from './DetailSheet'
-import { PlusIcon, PencilIcon } from './Icons'
+import { PlusIcon, PencilIcon, ExternalLinkIcon } from './Icons'
 import { eur, accountMonthly } from '../lib/expenses'
+import { bankBrand } from '../lib/banks'
 
 // One account's page: header + monthly total + its expenses (row -> sheet).
 // Editing / deleting the account is in a sheet opened from the header.
@@ -11,6 +12,7 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
   const [acctSheet, setAcctSheet] = useState(false)
   const items = expenses.filter((e) => e.account_id === account.id)
   const monthly = accountMonthly(account.id, expenses)
+  const login = bankBrand(account.name)?.login
 
   return (
     <div>
@@ -23,6 +25,12 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
           </div>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
+          {login && (
+            <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Accedi a ${account.name}`} className="h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[13px] max-[640px]:w-9 max-[640px]:px-0">
+              <ExternalLinkIcon className="w-4 h-4" />
+              <span className="max-[640px]:hidden">Accedi</span>
+            </a>
+          )}
           <button onClick={() => setAcctSheet(true)} aria-label="Modifica conto" className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
             <PencilIcon className="w-4 h-4" />
           </button>
