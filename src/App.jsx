@@ -5,9 +5,7 @@ import Modal from './components/Modal'
 import ExpenseForm from './components/ExpenseForm'
 import AccountForm from './components/AccountForm'
 import AuthPage from './components/AuthPage'
-import { SkeletonCard } from './components/Skeleton'
 import { PlusIcon, ChartIcon, AccountIcon } from './components/Icons'
-import ThemeToggle from './components/ThemeToggle'
 import { ToastProvider, useToast } from './components/Toast'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
@@ -200,13 +198,9 @@ function AppContent({ onLogout, user }) {
           </div>
         </nav>
 
-        {/* Bottom: theme + logout */}
+        {/* Bottom: logout */}
         <div className="px-3 pb-4 space-y-1">
           <div className="mx-1 mb-2 divider-glow" />
-          <div className="flex items-center justify-between px-3 py-2">
-            <span className="text-[11px] font-semibold text-gray-300 dark:text-ink-faint uppercase tracking-wider">Tema</span>
-            <ThemeToggle />
-          </div>
           <button
             onClick={onLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium text-gray-400 dark:text-ink-dim hover:bg-red-50 dark:hover:bg-neg/[0.12] hover:text-red-500 dark:hover:text-neg transition-all duration-200"
@@ -247,42 +241,13 @@ function AppContent({ onLogout, user }) {
         {/* Content */}
         <div key={activeView} className="px-8 py-8 max-w-5xl animate-fade-up">
           {activeView === 'dashboard' ? (
-            <>
-              <Dashboard data={dashboard} />
-              <div className="mt-10 space-y-5">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-[18px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">Tutti i conti</h2>
-                  <span className="text-[12px] font-medium text-gray-300 dark:text-ink-faint uppercase tracking-wider">{accounts.length} conti</span>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 stagger">
-                  {loading ? (
-                    <>
-                      <SkeletonCard />
-                      <SkeletonCard />
-                    </>
-                  ) : (
-                    accounts.map((account) => (
-                      <AccountCard
-                        key={account.id}
-                        account={account}
-                        expenses={getExpensesForAccount(account.id)}
-                        onAddExpense={(accountId) => setExpenseModal({ open: true, expense: null, defaultAccountId: accountId })}
-                        onEditExpense={(expense) => setExpenseModal({ open: true, expense, defaultAccountId: null })}
-                        onDeleteExpense={(id) => {
-                          const exp = expenses.find((e) => e.id === id)
-                          setDeleteConfirm({ open: true, type: 'expense', id, name: exp?.name || '' })
-                        }}
-                        onEditAccount={(account) => setAccountModal({ open: true, account })}
-                        onDeleteAccount={(id) => {
-                          const acc = accounts.find((a) => a.id === id)
-                          setDeleteConfirm({ open: true, type: 'account', id, name: acc?.name || '' })
-                        }}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
-            </>
+            <Dashboard
+              data={dashboard}
+              accounts={accounts}
+              expenses={expenses}
+              onEditExpense={(expense) => setExpenseModal({ open: true, expense, defaultAccountId: null })}
+              onDeleteExpense={handleDeleteExpense}
+            />
           ) : (
             (() => {
               const accountId = parseInt(activeView.replace('account-', ''))

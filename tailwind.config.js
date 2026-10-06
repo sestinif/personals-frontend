@@ -9,42 +9,44 @@ export default {
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
-        /* ===== "Dark raffinato" palette ===== */
-        bg: '#0B0B0D',          // page background (near-black)
-        surface: '#15151A',      // card / surface
-        surface2: '#1C1C22',     // elevated: inputs / hover / modal
-        line: 'rgba(255,255,255,0.08)',      // default border
-        'line-strong': 'rgba(255,255,255,0.14)', // emphasis border
-        ink: '#F4F3F1',          // text primary (ivory)
-        'ink-dim': '#A8A6A2',    // text secondary (muted)
-        'ink-faint': '#7A7880',  // text tertiary (hint)
-        accent: '#8B7BFF',       // violet accent / primary
-        'accent-strong': '#7C5CFC', // violet strong (button)
-        pos: '#34D399',          // positive / gain (emerald)
-        neg: '#FB7185',          // negative / destructive (rose)
+        /* ===== Mercury dark palette (same token names, new values) ===== */
+        bg: '#14141B',          // page background
+        surface: '#1B1B24',      // card / surface
+        surface2: '#23232E',     // elevated: inputs / hover / modal
+        line: 'rgba(255,255,255,0.08)',      // default border (1px)
+        'line-strong': 'rgba(255,255,255,0.16)', // emphasis border
+        ink: '#EDEDF3',          // text primary
+        'ink-dim': '#9A9AA8',    // text secondary
+        'ink-faint': '#9A9AA8',  // text tertiary (single secondary grey)
+        accent: '#8D9BFF',       // indigo accent / primary
+        'accent-strong': '#8D9BFF', // flat: same indigo
+        pos: '#4FD1A1',          // positive / gain
+        neg: '#F58A9B',          // negative / destructive
 
-        /* brand scale remapped to the violet accent so every existing
-           brand-* utility adopts the new accent automatically */
+        /* distribution tones — indigo + grey, assigned by position */
+        'tone-1': '#8D9BFF',
+        'tone-2': '#5F69B8',
+        'tone-3': '#3D4272',
+        'tone-mute': '#6B6B7B',
+
+        /* brand scale remapped to indigo so every brand-* utility adopts it */
         brand: {
-          50: '#f1efff',
-          100: '#e6e2ff',
-          200: '#d0c8ff',
-          300: '#b3a6ff',
-          400: '#8B7BFF',
-          500: '#8B7BFF',
-          600: '#7C5CFC',
-          700: '#6B49E8',
-          800: '#5739c2',
-          900: '#3d2a85',
-          950: '#1f1547',
+          50: '#23232E',
+          100: '#23232E',
+          200: '#5F69B8',
+          300: '#8D9BFF',
+          400: '#8D9BFF',
+          500: '#8D9BFF',
+          600: '#8D9BFF',
+          700: '#A3AEFF',
+          800: '#5F69B8',
+          900: '#3D4272',
+          950: '#23232E',
         },
       },
       boxShadow: {
-        'glass': '0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.35)',
-        'card': '0 1px 2px rgba(0,0,0,0.3)',
-        'card-hover': '0 12px 40px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3)',
-        'premium': '0 24px 60px -16px rgba(0, 0, 0, 0.6)',
-        'glow': '0 0 0 1px rgba(139, 123, 255, 0.18)',
+        'card': 'none',
+        'sheet': '0 16px 48px rgba(0,0,0,0.5)',
       },
       animation: {
         'fade-in': 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
