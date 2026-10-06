@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { bankBrand } from '../lib/banks'
 
-// Indigo-family tones (same palette as the dashboard distribution) + one grey.
-// A stable tone per account name gives the avatars a little life without any
-// brand colour.
+// Indigo-family tones (same palette as the dashboard distribution) + one grey,
+// used only for the initials fallback chip.
 const TONES = [[141, 155, 255], [124, 134, 224], [95, 105, 184], [120, 128, 176]]
 function toneFor(s) {
   let h = 0
@@ -11,8 +10,9 @@ function toneFor(s) {
   return TONES[h % TONES.length]
 }
 
-// Neutral avatar: initials on a soft indigo-tinted chip with a thin ring.
-// The bank logo (monochrome) fades in on top only if it actually loads.
+// Avatar: shows the real bank logo (via Google's favicon service, which — unlike
+// the retired Clearbit — actually resolves). Falls back to initials on a soft
+// indigo chip when there is no domain or the logo fails to load.
 export default function Avatar({ name, size = 32 }) {
   const [loaded, setLoaded] = useState(false)
   const brand = bankBrand(name)
@@ -26,6 +26,7 @@ export default function Avatar({ name, size = 32 }) {
     .toUpperCase()
 
   const [r, g, b] = toneFor(label.toLowerCase())
+  const logo = brand?.domain ? `https://www.google.com/s2/favicons?domain=${brand.domain}&sz=64` : null
 
   return (
     <div
@@ -34,22 +35,22 @@ export default function Avatar({ name, size = 32 }) {
         width: size,
         height: size,
         fontSize: Math.max(12, Math.round(size * 0.36)),
-        background: `rgba(${r},${g},${b},0.16)`,
-        boxShadow: `inset 0 0 0 1px rgba(${r},${g},${b},0.4)`,
+        background: loaded ? '#23232E' : `rgba(${r},${g},${b},0.16)`,
+        boxShadow: loaded ? 'inset 0 0 0 1px rgba(255,255,255,0.08)' : `inset 0 0 0 1px rgba(${r},${g},${b},0.4)`,
         color: `rgb(${Math.min(r + 70, 255)},${Math.min(g + 70, 255)},${Math.min(b + 70, 255)})`,
       }}
     >
       <span style={{ opacity: loaded ? 0 : 1 }}>{initials}</span>
-      {brand?.domain && (
+      {logo && (
         <img
-          src={`https://logo.clearbit.com/${brand.domain}`}
+          src={logo}
           alt=""
           aria-hidden="true"
           loading="lazy"
           onLoad={() => setLoaded(true)}
           onError={() => setLoaded(false)}
           className="absolute inset-0 m-auto transition-opacity duration-200"
-          style={{ width: size * 0.6, height: size * 0.6, objectFit: 'contain', filter: 'grayscale(1) brightness(1.8) contrast(1.05)', opacity: loaded ? 1 : 0 }}
+          style={{ width: Math.round(size * 0.58), height: Math.round(size * 0.58), objectFit: 'contain', opacity: loaded ? 1 : 0 }}
         />
       )}
     </div>
