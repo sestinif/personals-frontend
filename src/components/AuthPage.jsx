@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import Segmented from './Segmented'
+
+const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
 
 export default function AuthPage({ onAuth, apiUrl }) {
   const [isLogin, setIsLogin] = useState(true)
@@ -11,7 +14,6 @@ export default function AuthPage({ onAuth, apiUrl }) {
     e.preventDefault()
     setError('')
     setLoading(true)
-
     try {
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register'
       const res = await fetch(`${apiUrl}${endpoint}`, {
@@ -29,111 +31,51 @@ export default function AuthPage({ onAuth, apiUrl }) {
     }
   }
 
-  const inputClass = 'w-full px-4 py-3 bg-gray-50/50 dark:bg-surface2 border border-gray-200/80 dark:border-line rounded-xl text-[14px] text-gray-900 dark:text-ink placeholder-gray-400 dark:placeholder-ink-faint transition-all duration-200 outline-none input-depth focus:border-brand-400 dark:focus:border-accent/55 focus:bg-white dark:focus:bg-surface2'
-
   return (
-    <div className="min-h-screen bg-depth bg-noise flex items-center justify-center p-4 transition-colors duration-300">
-      <div className="w-full max-w-[400px]">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-accent-strong flex items-center justify-center icon-badge mx-auto mb-4">
-            <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="white" strokeWidth="2"/><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="white" strokeWidth="2" strokeLinecap="round"/><circle cx="16.5" cy="13" r="1.25" fill="white"/></svg>
+    <div className="min-h-screen bg-bg flex items-center justify-center p-4">
+      <div className="w-full max-w-[380px]">
+        <div className="text-center mb-7">
+          <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mx-auto mb-4">
+            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="4" y="7.5" width="16" height="11" rx="3" stroke="#14141B" strokeWidth="2" /><path d="M4 11 H16.5 a2 2 0 0 1 2 2" stroke="#14141B" strokeWidth="2" strokeLinecap="round" /><circle cx="16.5" cy="13" r="1.25" fill="#14141B" /></svg>
           </div>
-          <h1 className="text-[24px] font-semibold text-gray-900 dark:text-ink tracking-tight text-depth">Personals</h1>
-          <p className="text-[13px] text-gray-400 dark:text-ink-dim mt-1 font-normal">
-            {isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}
-          </p>
+          <h1 className="text-[22px] font-medium text-ink tracking-tight">Personals</h1>
+          <p className="text-[13px] text-ink-dim mt-1">{isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}</p>
         </div>
 
-        {/* Card */}
-        <div className="card-premium p-8">
-          {/* Tabs */}
-          <div className="flex gap-1 p-1 toggle-pill rounded-xl mb-6">
-            <button
-              type="button"
-              onClick={() => { setIsLogin(true); setError('') }}
-              className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
-                isLogin
-                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
-                  : 'text-gray-500 dark:text-ink-dim hover:text-gray-700 dark:hover:text-ink'
-              }`}
-            >
-              Accedi
-            </button>
-            <button
-              type="button"
-              onClick={() => { setIsLogin(false); setError('') }}
-              className={`flex-1 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200 ${
-                !isLogin
-                  ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
-                  : 'text-gray-500 dark:text-ink-dim hover:text-gray-700 dark:hover:text-ink'
-              }`}
-            >
-              Registrati
-            </button>
+        <div className="card p-6">
+          <div className="mb-5">
+            <Segmented
+              options={[{ value: 'login', label: 'Accedi' }, { value: 'register', label: 'Registrati' }]}
+              value={isLogin ? 'login' : 'register'}
+              onChange={(v) => { setIsLogin(v === 'login'); setError('') }}
+            />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-[13px] font-semibold text-gray-500 dark:text-ink-dim mb-2">
-                Username
-              </label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Il tuo username"
-                className={inputClass}
-                required
-                autoFocus
-                autoComplete="username"
-              />
+              <label className="block text-[12px] text-ink-dim mb-1.5">Username</label>
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Il tuo username" className={fieldClass} required autoFocus autoComplete="username" />
             </div>
             <div>
-              <label className="block text-[13px] font-semibold text-gray-500 dark:text-ink-dim mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={isLogin ? 'La tua password' : 'Minimo 6 caratteri'}
-                className={inputClass}
-                required
-                autoComplete={isLogin ? 'current-password' : 'new-password'}
-              />
+              <label className="block text-[12px] text-ink-dim mb-1.5">Password</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={isLogin ? 'La tua password' : 'Minimo 6 caratteri'} className={fieldClass} required autoComplete={isLogin ? 'current-password' : 'new-password'} />
             </div>
 
             {error && (
-              <div className="px-4 py-3 rounded-xl bg-red-50/80 dark:bg-neg/[0.08] border border-red-200/50 dark:border-neg/20">
-                <p className="text-[13px] font-medium text-red-600 dark:text-neg">{error}</p>
+              <div className="px-3 py-2.5 rounded-lg bg-neg/[0.08] border border-neg/20">
+                <p className="text-[13px] text-neg">{error}</p>
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-4 py-3 text-[14px] font-semibold uppercase tracking-wide text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <span className="inline-flex items-center gap-2">
-                  <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Caricamento...
-                </span>
-              ) : isLogin ? 'Accedi' : 'Registrati'}
+            <button type="submit" disabled={loading} className="w-full h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              {loading ? 'Caricamento…' : isLogin ? 'Accedi' : 'Registrati'}
             </button>
           </form>
         </div>
 
-        <p className="text-center text-[12px] text-gray-400 dark:text-ink-faint mt-6 font-medium">
+        <p className="text-center text-[12px] text-ink-dim mt-5">
           {isLogin ? 'Non hai un account? ' : 'Hai già un account? '}
-          <button
-            onClick={() => { setIsLogin(!isLogin); setError('') }}
-            className="text-brand-500 hover:text-brand-600 dark:text-accent dark:hover:text-accent-strong font-semibold"
-          >
+          <button onClick={() => { setIsLogin(!isLogin); setError('') }} className="text-accent hover:text-brand-700">
             {isLogin ? 'Registrati' : 'Accedi'}
           </button>
         </p>

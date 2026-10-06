@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react'
+import AmountField from './AmountField'
+import Segmented from './Segmented'
+
+const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
+const labelClass = 'block text-[12px] text-ink-dim mb-1.5'
 
 export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
   const [form, setForm] = useState({
@@ -10,7 +15,6 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
     end_date: '',
     account_id: accounts[0]?.id || '',
   })
-  const [focused, setFocused] = useState(null)
 
   useEffect(() => {
     if (expense) {
@@ -26,150 +30,75 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
     }
   }, [expense])
 
+  const set = (patch) => setForm((f) => ({ ...f, ...patch }))
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    const data = {
-      ...form,
-      amount: parseFloat(form.amount),
-      account_id: parseInt(form.account_id),
-    }
+    const data = { ...form, amount: parseFloat(form.amount), account_id: parseInt(form.account_id) }
     if (form.expense_type === 'subscription') data.end_date = ''
     onSubmit(data)
   }
 
-  const inputClass = (name) => `w-full px-3.5 py-2.5 bg-gray-50/50 dark:bg-surface2 border rounded-xl text-[14px] text-gray-900 dark:text-ink placeholder-gray-300 dark:placeholder-ink-faint transition-all duration-200 outline-none input-depth ${
-    focused === name
-      ? 'border-brand-400 dark:border-accent/55 bg-white dark:bg-surface2'
-      : 'border-gray-200/80 dark:border-line hover:border-gray-300 dark:hover:border-line-strong'
-  }`
-  const labelClass = 'block text-[11px] font-semibold text-gray-400 dark:text-ink-faint mb-1.5 uppercase tracking-wider'
-
-  const toggleBtn = (active) => `flex-1 py-2 text-[12px] font-semibold rounded-lg transition-all duration-200 ${
-    active
-      ? 'bg-white dark:bg-white/[0.08] text-gray-900 dark:text-ink toggle-pill-active'
-      : 'text-gray-400 dark:text-ink-dim hover:text-gray-600 dark:hover:text-ink'
-  }`
+  const monthlyHint = form.frequency === 'yearly' && form.amount
+    ? `${(parseFloat(form.amount) / 12).toFixed(2).replace('.', ',')} €/mese`
+    : null
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div>
+        <AmountField value={form.amount} onChange={(v) => set({ amount: v })} autoFocus />
+        {monthlyHint && <div className="mt-2 text-[12px] text-ink-dim">= {monthlyHint}</div>}
+      </div>
+
       <div>
         <label className={labelClass}>Nome spesa</label>
-        <input
-          type="text"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          onFocus={() => setFocused('name')}
-          onBlur={() => setFocused(null)}
-          placeholder="es. Spotify, MacBook..."
-          className={inputClass('name')}
-          required
-          autoFocus
-        />
+        <input type="text" value={form.name} onChange={(e) => set({ name: e.target.value })} placeholder="Netflix, MacBook…" className={fieldClass} required />
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className={labelClass}>Tipo</label>
-          <div className="flex gap-0.5 p-0.5 toggle-pill rounded-lg">
-            <button type="button" onClick={() => setForm({ ...form, expense_type: 'subscription' })} className={toggleBtn(form.expense_type === 'subscription')}>
-              Abbonam.
-            </button>
-            <button type="button" onClick={() => setForm({ ...form, expense_type: 'financing' })} className={toggleBtn(form.expense_type === 'financing')}>
-              Finanziam.
-            </button>
-          </div>
+          <Segmented
+            options={[{ value: 'subscription', label: 'Abbonamento' }, { value: 'financing', label: 'Finanziamento' }]}
+            value={form.expense_type}
+            onChange={(v) => set({ expense_type: v })}
+          />
         </div>
         <div>
           <label className={labelClass}>Frequenza</label>
-          <div className="flex gap-0.5 p-0.5 toggle-pill rounded-lg">
-            <button type="button" onClick={() => setForm({ ...form, frequency: 'monthly' })} className={toggleBtn(form.frequency === 'monthly')}>
-              Mensile
-            </button>
-            <button type="button" onClick={() => setForm({ ...form, frequency: 'yearly' })} className={toggleBtn(form.frequency === 'yearly')}>
-              Annuale
-            </button>
-          </div>
+          <Segmented
+            options={[{ value: 'monthly', label: 'Mensile' }, { value: 'yearly', label: 'Annuale' }]}
+            value={form.frequency}
+            onChange={(v) => set({ frequency: v })}
+          />
         </div>
       </div>
 
-      <div className={`grid gap-3 ${form.expense_type === 'financing' ? 'grid-cols-3' : 'grid-cols-2'}`}>
-        <div>
-          <label className={labelClass}>Importo</label>
-          <div className="relative">
-            <span className={`absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-wider transition-colors ${focused === 'amount' ? 'text-brand-500 dark:text-accent' : 'text-gray-300 dark:text-ink-faint'}`}>EUR</span>
-            <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={form.amount}
-              onChange={(e) => setForm({ ...form, amount: e.target.value })}
-              onFocus={() => setFocused('amount')}
-              onBlur={() => setFocused(null)}
-              placeholder="0.00"
-              className={`${inputClass('amount')} pl-12 font-mono font-semibold`}
-              required
-            />
-          </div>
-          {form.frequency === 'yearly' && form.amount && (
-            <p className="text-[10px] text-brand-400/70 dark:text-accent/80 font-medium mt-1 pl-0.5">
-              = {(parseFloat(form.amount) / 12).toFixed(2)}/mese
-            </p>
-          )}
-        </div>
+      <div className="grid grid-cols-2 gap-3">
         <div>
           <label className={labelClass}>Giorno rinnovo</label>
-          <input
-            type="text"
-            value={form.renewal_day}
-            onChange={(e) => setForm({ ...form, renewal_day: e.target.value })}
-            onFocus={() => setFocused('renewal')}
-            onBlur={() => setFocused(null)}
-            placeholder="es. 15"
-            className={inputClass('renewal')}
-          />
+          <input type="text" value={form.renewal_day} onChange={(e) => set({ renewal_day: e.target.value })} placeholder="15" className={fieldClass} />
         </div>
         {form.expense_type === 'financing' && (
           <div>
             <label className={labelClass}>Scadenza</label>
-            <input
-              type="date"
-              value={form.end_date}
-              onChange={(e) => setForm({ ...form, end_date: e.target.value })}
-              onFocus={() => setFocused('end_date')}
-              onBlur={() => setFocused(null)}
-              className={inputClass('end_date')}
-            />
+            <input type="date" value={form.end_date} onChange={(e) => set({ end_date: e.target.value })} className={fieldClass} />
           </div>
         )}
       </div>
 
       <div>
         <label className={labelClass}>Conto</label>
-        <select
-          value={form.account_id}
-          onChange={(e) => setForm({ ...form, account_id: e.target.value })}
-          onFocus={() => setFocused('account')}
-          onBlur={() => setFocused(null)}
-          className={inputClass('account')}
-        >
-          {accounts.map((a) => (
-            <option key={a.id} value={a.id}>{a.name}</option>
-          ))}
+        <select value={form.account_id} onChange={(e) => set({ account_id: e.target.value })} className={fieldClass}>
+          {accounts.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
       </div>
 
-      <div className="flex gap-3 pt-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-gray-500 dark:text-ink-dim bg-gray-50 dark:bg-white/[0.05] border border-gray-200/80 dark:border-line rounded-xl hover:bg-gray-100 dark:hover:bg-white/[0.08] dark:hover:border-line-strong hover:text-gray-700 dark:hover:text-ink transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-        >
+      <div className="flex gap-3 pt-1">
+        <button type="button" onClick={onCancel} className="flex-1 h-11 text-[14px] text-ink-dim bg-transparent border border-line rounded-lg hover:border-line-strong hover:text-ink transition-colors">
           Annulla
         </button>
-        <button
-          type="submit"
-          className="flex-1 px-4 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-white bg-brand-600 hover:bg-brand-700 dark:bg-accent-strong dark:hover:bg-brand-700 rounded-xl transition-all duration-200 shadow-sm btn-premium focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
-        >
+        <button type="submit" className="flex-1 h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors">
           {expense ? 'Aggiorna' : 'Aggiungi'}
         </button>
       </div>
