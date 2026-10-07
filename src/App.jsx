@@ -37,7 +37,7 @@ function AppContent({ onLogout }) {
   const [accounts, setAccounts] = useState([])
   const [expenses, setExpenses] = useState([])
   const [activeView, setActiveView] = useState('dashboard')
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [expenseModal, setExpenseModal] = useState({ open: false, expense: null, defaultAccountId: null })
   const [accountModal, setAccountModal] = useState({ open: false, account: null })
 
@@ -103,6 +103,7 @@ function AppContent({ onLogout }) {
           onAddExpense={() => { openAddExpense(); setSidebarOpen(false) }}
           onAddAccount={() => { setAccountModal({ open: true, account: null }); setSidebarOpen(false) }}
           onLogout={onLogout}
+          onClose={() => setSidebarOpen(false)}
         />
       </aside>
 

@@ -65,7 +65,7 @@ function Frame() {
   const acct = view.startsWith('account-') ? accounts.find((a) => a.id === Number(view.replace('account-', ''))) : null
   return (
     <div className="flex h-screen bg-bg">
-      <Sidebar accounts={accounts} activeView={view} countFor={(id) => expenses.filter((e) => e.account_id === id).length} onSelect={setView} onAddExpense={noop} onAddAccount={noop} onLogout={noop} />
+      <Sidebar accounts={accounts} activeView={view} countFor={(id) => expenses.filter((e) => e.account_id === id).length} onSelect={setView} onAddExpense={noop} onAddAccount={noop} onLogout={noop} onClose={noop} />
       <main className="flex-1 overflow-y-auto">
         <div className="px-8 py-8 max-w-5xl">
           {acct

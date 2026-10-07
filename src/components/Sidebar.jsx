@@ -1,6 +1,6 @@
 import Avatar from './Avatar'
 import BrandMark from './BrandMark'
-import { PlusIcon, ChartIcon } from './Icons'
+import { PlusIcon, ChartIcon, XIcon } from './Icons'
 
 function LogoutIcon({ className }) {
   return (
@@ -15,7 +15,7 @@ const itemClass = (active) =>
     active ? 'bg-surface2 text-ink' : 'text-ink-dim hover:bg-white/[0.03] hover:text-ink'
   }`
 
-export default function Sidebar({ accounts, activeView, countFor, onSelect, onAddExpense, onAddAccount, onLogout }) {
+export default function Sidebar({ accounts, activeView, countFor, onSelect, onAddExpense, onAddAccount, onLogout, onClose }) {
   return (
     <div className="w-[260px] h-full flex flex-col bg-bg border-r border-line">
       <div className="px-5 py-5 flex items-center gap-3">
@@ -24,6 +24,11 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
           <div className="text-[15px] font-medium text-ink leading-tight">Personals</div>
           <div className="text-[12px] text-ink-dim">Spese ricorrenti</div>
         </div>
+        {onClose && (
+          <button onClick={onClose} aria-label="Chiudi menu" className="md:hidden ml-auto -mr-1 w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.04] transition-colors">
+            <XIcon className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       <nav className="flex-1 px-3 py-2 overflow-y-auto">
