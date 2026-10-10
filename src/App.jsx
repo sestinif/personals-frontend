@@ -27,7 +27,10 @@ async function api(path, opts = {}) {
     window.location.reload()
     throw new Error('Session expired')
   }
-  if (!res.ok) throw new Error(`API error: ${res.status}`)
+  if (!res.ok) {
+    const body = await res.json().catch(() => null)
+    throw new Error(body?.error || `API error: ${res.status}`)
+  }
   return res.json()
 }
 
@@ -69,8 +72,14 @@ function AppContent({ onLogout }) {
 
   const handleSaveAccount = async (data) => {
     const isEdit = !!accountModal.account
-    if (isEdit) await api(`/accounts/${accountModal.account.id}`, { method: 'PUT', body: data })
-    else await api('/accounts', { method: 'POST', body: data })
+    try {
+      if (isEdit) await api(`/accounts/${accountModal.account.id}`, { method: 'PUT', body: data })
+      else await api('/accounts', { method: 'POST', body: data })
+    } catch (err) {
+      // keep the modal open so the name can be changed
+      toast(err.message, 'error')
+      return
+    }
     setAccountModal({ open: false, account: null })
     toast(isEdit ? 'Conto aggiornato' : 'Conto aggiunto', 'success')
     loadData()
