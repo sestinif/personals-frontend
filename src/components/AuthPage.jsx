@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import Segmented from './Segmented'
 import BrandMark from './BrandMark'
 
 const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
 
 export default function AuthPage({ onAuth, apiUrl }) {
-  const [isLogin, setIsLogin] = useState(true)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -16,8 +14,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
     setError('')
     setLoading(true)
     try {
-      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register'
-      const res = await fetch(`${apiUrl}${endpoint}`, {
+      const res = await fetch(`${apiUrl}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -38,18 +35,10 @@ export default function AuthPage({ onAuth, apiUrl }) {
         <div className="text-center mb-7">
           <BrandMark size={48} className="mx-auto mb-4" />
           <h1 className="text-[22px] font-medium text-ink tracking-tight">Personals</h1>
-          <p className="text-[13px] text-ink-dim mt-1">{isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}</p>
+          <p className="text-[13px] text-ink-dim mt-1">Accedi al tuo account</p>
         </div>
 
         <div className="card p-6">
-          <div className="mb-5">
-            <Segmented
-              options={[{ value: 'login', label: 'Accedi' }, { value: 'register', label: 'Registrati' }]}
-              value={isLogin ? 'login' : 'register'}
-              onChange={(v) => { setIsLogin(v === 'login'); setError('') }}
-            />
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-[12px] text-ink-dim mb-1.5">Username</label>
@@ -57,7 +46,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
             </div>
             <div>
               <label className="block text-[12px] text-ink-dim mb-1.5">Password</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={isLogin ? 'La tua password' : 'Minimo 6 caratteri'} className={fieldClass} required autoComplete={isLogin ? 'current-password' : 'new-password'} />
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="La tua password" className={fieldClass} required autoComplete="current-password" />
             </div>
 
             {error && (
@@ -67,17 +56,10 @@ export default function AuthPage({ onAuth, apiUrl }) {
             )}
 
             <button type="submit" disabled={loading} className="w-full h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-              {loading ? 'Caricamento…' : isLogin ? 'Accedi' : 'Registrati'}
+              {loading ? 'Caricamento…' : 'Accedi'}
             </button>
           </form>
         </div>
-
-        <p className="text-center text-[12px] text-ink-dim mt-5">
-          {isLogin ? 'Non hai un account? ' : 'Hai già un account? '}
-          <button onClick={() => { setIsLogin(!isLogin); setError('') }} className="text-accent hover:text-brand-700">
-            {isLogin ? 'Registrati' : 'Accedi'}
-          </button>
-        </p>
       </div>
     </div>
   )
