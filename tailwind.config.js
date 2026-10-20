@@ -23,10 +23,10 @@ export default {
         pos: '#4FD1A1',          // positive / gain
         neg: '#F58A9B',          // negative / destructive
 
-        /* distribution tones — indigo + grey, assigned by position */
-        'tone-1': '#8D9BFF',
-        'tone-2': '#5F69B8',
-        'tone-3': '#3D4272',
+        /* distribution tones — greens + grey, assigned by position */
+        'tone-1': '#4FD1A1',
+        'tone-2': '#2E9C78',
+        'tone-3': '#1D6350',
         'tone-mute': '#6B6B7B',
 
         /* brand scale remapped to indigo so every brand-* utility adopts it */

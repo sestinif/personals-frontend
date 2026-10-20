@@ -22,7 +22,7 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
         <BrandMark size={36} />
         <div className="min-w-0">
           <div className="text-[15px] font-medium text-ink leading-tight">Personals</div>
-          <div className="text-[12px] text-ink-dim">Recurring expenses</div>
+          <div className="text-[12px] text-ink-dim">Recurring Expenses</div>
         </div>
         {onClose && (
           <button onClick={onClose} aria-label="Close menu" className="md:hidden ml-auto -mr-1 w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.04] transition-colors">
@@ -55,13 +55,13 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
 
       <div className="px-3 pb-4 pt-2 space-y-1.5 border-t border-line">
         <button onClick={onAddExpense} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] font-medium text-bg bg-accent hover:bg-brand-700 transition-colors">
-          <PlusIcon className="w-[18px] h-[18px]" />New expense
+          <PlusIcon className="w-[18px] h-[18px]" />New Expense
         </button>
         <button onClick={onAddAccount} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
-          <PlusIcon className="w-[18px] h-[18px]" />New account
+          <PlusIcon className="w-[18px] h-[18px]" />New Account
         </button>
         <button onClick={onLogout} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
-          <LogoutIcon className="w-[18px] h-[18px]" />Log out
+          <LogoutIcon className="w-[18px] h-[18px]" />Log Out
         </button>
       </div>
     </div>

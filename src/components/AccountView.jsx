@@ -29,7 +29,7 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
           {login && (
             <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Log in to ${account.name}`} className="h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[13px] max-[640px]:w-9 max-[640px]:px-0">
               <ExternalLinkIcon className="w-4 h-4" />
-              <span className="max-[640px]:hidden">Log in</span>
+              <span className="max-[640px]:hidden">Log In</span>
             </a>
           )}
           <button onClick={() => setAcctSheet(true)} aria-label="Edit account" className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
@@ -37,13 +37,13 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
           </button>
           <button onClick={() => onAddExpense(account.id)} className="inline-flex items-center justify-center gap-2 bg-accent text-bg font-medium rounded-lg h-9 px-3.5 text-[13px] hover:bg-brand-700 transition-colors max-[640px]:w-9 max-[640px]:px-0 max-[640px]:rounded-full">
             <PlusIcon className="w-4 h-4" />
-            <span className="max-[640px]:hidden">Add expense</span>
+            <span className="max-[640px]:hidden">Add Expense</span>
           </button>
         </div>
       </div>
 
       <div className="card p-[18px] mb-1">
-        <div className="text-[12px] text-ink-dim">Monthly spend</div>
+        <div className="text-[12px] text-ink-dim">Monthly Spend</div>
         <div className="text-[32px] tracking-tight mt-[2px] text-ink font-number hero-amount"><CountEur value={monthly} /></div>
       </div>
 
@@ -65,11 +65,11 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
         amount={`${eur(monthly)}/month`}
         rows={[
           { label: 'Expenses', value: items.length },
-          { label: 'Monthly total', value: eur(monthly) },
+          { label: 'Monthly Total', value: eur(monthly) },
         ]}
         onEdit={() => { setAcctSheet(false); onEditAccount(account) }}
         onDelete={() => { setAcctSheet(false); onDeleteAccount(account.id) }}
-        deleteLabel="Delete account"
+        deleteLabel="Delete Account"
       />
     </div>
   )

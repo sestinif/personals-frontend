@@ -27,7 +27,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className={labelClass}>Account name</label>
+        <label className={labelClass}>Account Name</label>
         <input
           type="text"
           value={form.name}

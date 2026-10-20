@@ -140,7 +140,7 @@ function AppContent({ onLogout }) {
         </div>
       </main>
 
-      <Modal open={expenseModal.open} onClose={closeExpenseModal} title={expenseModal.expense ? 'Edit expense' : 'New expense'}>
+      <Modal open={expenseModal.open} onClose={closeExpenseModal} title={expenseModal.expense ? 'Edit Expense' : 'New Expense'}>
         <ExpenseForm
           expense={expenseModal.expense}
           accounts={expenseModal.defaultAccountId
@@ -151,7 +151,7 @@ function AppContent({ onLogout }) {
         />
       </Modal>
 
-      <Modal open={accountModal.open} onClose={() => setAccountModal({ open: false, account: null })} title={accountModal.account ? 'Edit account' : 'New account'}>
+      <Modal open={accountModal.open} onClose={() => setAccountModal({ open: false, account: null })} title={accountModal.account ? 'Edit Account' : 'New Account'}>
         <AccountForm account={accountModal.account} onSubmit={handleSaveAccount} onCancel={() => setAccountModal({ open: false, account: null })} />
       </Modal>
     </div>

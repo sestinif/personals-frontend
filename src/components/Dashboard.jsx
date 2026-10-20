@@ -4,7 +4,7 @@ import { SkeletonDashboard } from './Skeleton'
 import { eur, eur0, accountMonthly } from '../lib/expenses'
 import { useCountUp } from './CountUp'
 
-const TONES = ['#8D9BFF', '#5F69B8', '#3D4272']
+const TONES = ['#4FD1A1', '#2E9C78', '#1D6350']
 const toneFor = (i) => (i < TONES.length ? TONES[i] : '#6B6B7B')
 
 function greeting() {
@@ -44,7 +44,7 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
 
       <div className="grid grid-cols-1 min-[860px]:grid-cols-[1.5fr_1fr] gap-[14px] items-start">
         <div className="card p-[18px]">
-          <div className="text-[12px] text-ink-dim">Monthly spend</div>
+          <div className="text-[12px] text-ink-dim">Monthly Spend</div>
           <div className="text-[38px] max-[640px]:text-[32px] tracking-tight leading-[1.15] mt-[2px] mb-[4px] text-ink">
             <HeroAmount value={grandTotal} />
           </div>
@@ -76,7 +76,7 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
       <StatRow stats={[
         { label: 'Subscriptions', value: subs },
         { label: 'Financing', value: fin },
-        { label: 'Average per account', value: eur(perAccount) },
+        { label: 'Average per Account', value: eur(perAccount) },
       ]} />
     </div>
   )

@@ -54,12 +54,12 @@ export default function ExpenseLedger({ expenses, accounts, onEditExpense, onDel
           { label: 'Type', value: sel.expense_type === 'financing' ? 'Financing' : 'Subscription' },
           { label: 'Frequency', value: isYearly(sel) ? 'Yearly' : 'Monthly' },
           ...(sel.renewal_day && !isYearly(sel) ? [{ label: 'Renewal', value: `Day ${sel.renewal_day}` }] : []),
-          ...(sel.expense_type === 'financing' && sel.end_date ? [{ label: 'End date', value: remaining(sel.end_date) }] : []),
+          ...(sel.expense_type === 'financing' && sel.end_date ? [{ label: 'End Date', value: remaining(sel.end_date) }] : []),
           { label: 'Account', value: selAccount?.name || '—' },
         ] : []}
         onEdit={onEditExpense ? () => { const e = sel; setSel(null); onEditExpense(e) } : undefined}
         onDelete={() => { const id = sel.id; setSel(null); onDeleteExpense && onDeleteExpense(id) }}
-        deleteLabel="Delete expense"
+        deleteLabel="Delete Expense"
       />
     </div>
   )

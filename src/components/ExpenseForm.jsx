@@ -51,7 +51,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
       </div>
 
       <div>
-        <label className={labelClass}>Expense name</label>
+        <label className={labelClass}>Expense Name</label>
         <input type="text" value={form.name} onChange={(e) => set({ name: e.target.value })} placeholder="Netflix, MacBook…" className={fieldClass} required />
       </div>
 
@@ -76,12 +76,12 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className={labelClass}>Renewal day</label>
+          <label className={labelClass}>Renewal Day</label>
           <input type="text" value={form.renewal_day} onChange={(e) => set({ renewal_day: e.target.value })} placeholder="15" className={fieldClass} />
         </div>
         {form.expense_type === 'financing' && (
           <div>
-            <label className={labelClass}>End date</label>
+            <label className={labelClass}>End Date</label>
             <input type="date" value={form.end_date} onChange={(e) => set({ end_date: e.target.value })} className={fieldClass} />
           </div>
         )}
