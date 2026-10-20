@@ -12,12 +12,12 @@ function LogoutIcon({ className }) {
 
 const itemClass = (active) =>
   `w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] transition-colors ${
-    active ? 'bg-surface2 text-ink' : 'text-ink-dim hover:bg-white/[0.03] hover:text-ink'
+    active ? 'nav-active-pill text-ink' : 'text-ink-dim hover:bg-white/[0.03] hover:text-ink'
   }`
 
 export default function Sidebar({ accounts, activeView, countFor, onSelect, onAddExpense, onAddAccount, onLogout, onClose }) {
   return (
-    <div className="w-[260px] h-full flex flex-col bg-bg border-r border-line">
+    <div className="w-[260px] h-full flex flex-col bg-bg border-r border-line sidebar-surface">
       <div className="px-5 py-5 flex items-center gap-3">
         <BrandMark size={36} />
         <div className="min-w-0">

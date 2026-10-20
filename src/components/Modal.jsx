@@ -35,7 +35,7 @@ export default function Modal({ open, onClose, title, children }) {
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
     >
       <div
-        className={`relative bg-surface rounded-[12px] w-full max-w-md border border-line shadow-sheet overflow-hidden transition-all duration-200 ${
+        className={`relative bg-surface surface-raised rounded-[14px] w-full max-w-md max-h-[calc(100dvh-2rem)] overflow-y-auto border border-line shadow-sheet transition-all duration-200 ${
           isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-[0.98] translate-y-2'
         }`}
       >

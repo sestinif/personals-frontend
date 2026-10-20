@@ -44,11 +44,11 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
   return (
     <div className="fixed inset-0 z-[400]" aria-modal="true" role="dialog">
       <div
-        className={`absolute inset-0 bg-[rgba(8,8,12,0.62)] transition-opacity duration-200 ${shown ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 bg-[rgba(8,8,12,0.55)] backdrop-blur-[5px] transition-opacity duration-200 ${shown ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
       />
       <div
-        className={`absolute left-0 right-0 bottom-0 max-h-[86vh] overflow-y-auto bg-surface border-t border-line rounded-t-[20px] p-[10px_18px_24px]
+        className={`absolute left-0 right-0 bottom-0 max-h-[86vh] overflow-y-auto bg-surface surface-raised border-t border-line rounded-t-[20px] p-[10px_18px_24px]
           sm:left-auto sm:top-0 sm:bottom-0 sm:right-0 sm:w-[380px] sm:max-h-none sm:h-full sm:rounded-none sm:border-t-0 sm:border-l sm:p-6
           transition-transform duration-200 ${shown ? 'translate-y-0 sm:translate-x-0' : 'translate-y-6 sm:translate-y-0 sm:translate-x-6'}`}
       >

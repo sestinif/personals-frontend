@@ -2,6 +2,7 @@ import PageHead from './PageHead'
 import StatRow from './StatRow'
 import { SkeletonDashboard } from './Skeleton'
 import { eur, eur0, accountMonthly } from '../lib/expenses'
+import { useCountUp } from './CountUp'
 
 const TONES = ['#8D9BFF', '#5F69B8', '#3D4272']
 const toneFor = (i) => (i < TONES.length ? TONES[i] : '#6B6B7B')
@@ -14,12 +15,12 @@ function greeting() {
 }
 
 function HeroAmount({ value }) {
-  const [int, dec] = value.toFixed(2).split('.')
+  const [int, dec] = useCountUp(value).toFixed(2).split('.')
   return (
-    <span className="font-number">
-      <span className="text-ink-dim">€</span>
+    <span className="font-number hero-amount">
+      <span className="hero-dim">€</span>
       {Number(int).toLocaleString('en-US', { useGrouping: true })}
-      <span className="text-ink-dim">.{dec}</span>
+      <span className="hero-dim">.{dec}</span>
     </span>
   )
 }
@@ -37,7 +38,7 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
   const positives = withTotal.filter((a) => a.monthly > 0)
 
   return (
-    <div>
+    <div className="stagger">
       <PageHead greeting={`${greeting()}, Federico`} title="Overview" />
       <div className="text-[13px] text-ink-dim -mt-4 mb-5">{monthName}</div>
 
@@ -56,7 +57,7 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
           <div className="text-[12px] text-ink-dim mb-3">Breakdown</div>
           <div className="flex gap-[2px] mb-3">
             {positives.map((a, i) => (
-              <span key={a.id} className="h-1 rounded-[2px]" style={{ flex: a.monthly, background: toneFor(i), minWidth: 2 }} />
+              <span key={a.id} className="h-[5px] rounded-full bar-seg" style={{ flex: a.monthly, background: toneFor(i), minWidth: 2 }} />
             ))}
           </div>
           {withTotal.map((a, i) => {

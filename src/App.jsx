@@ -116,7 +116,7 @@ function AppContent({ onLogout }) {
         />
       </aside>
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto app-canvas">
         <div className="md:hidden sticky top-0 z-10 bg-bg border-b border-line px-4 py-3">
           <button onClick={() => setSidebarOpen(true)} aria-label="Open menu" className="w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>

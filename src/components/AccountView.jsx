@@ -4,6 +4,7 @@ import ExpenseLedger from './ExpenseLedger'
 import DetailSheet from './DetailSheet'
 import { PlusIcon, PencilIcon, ExternalLinkIcon } from './Icons'
 import { eur, accountMonthly } from '../lib/expenses'
+import { CountEur } from './CountUp'
 import { bankBrand } from '../lib/banks'
 
 // One account's page: header + monthly total + its expenses (row -> sheet).
@@ -43,7 +44,7 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
 
       <div className="card p-[18px] mb-1">
         <div className="text-[12px] text-ink-dim">Monthly spend</div>
-        <div className="text-[32px] tracking-tight mt-[2px] text-ink font-number">{eur(monthly)}</div>
+        <div className="text-[32px] tracking-tight mt-[2px] text-ink font-number hero-amount"><CountEur value={monthly} /></div>
       </div>
 
       <ExpenseLedger
