@@ -36,7 +36,10 @@ export default function Avatar({ name, size = 32 }) {
         height: size,
         fontSize: Math.max(12, Math.round(size * 0.36)),
         background: loaded ? '#23232E' : `rgba(${r},${g},${b},0.16)`,
-        boxShadow: loaded ? 'inset 0 0 0 1px rgba(255,255,255,0.08)' : `inset 0 0 0 1px rgba(${r},${g},${b},0.4)`,
+        // A full, even ring and a faint halo: the same width on every side.
+        boxShadow: loaded
+          ? 'inset 0 0 0 2px rgba(255,255,255,0.12), 0 0 0 4px rgba(255,255,255,0.04)'
+          : `inset 0 0 0 2px rgba(${r},${g},${b},0.55), 0 0 0 4px rgba(${r},${g},${b},0.12)`,
         color: `rgb(${Math.min(r + 70, 255)},${Math.min(g + 70, 255)},${Math.min(b + 70, 255)})`,
       }}
     >
