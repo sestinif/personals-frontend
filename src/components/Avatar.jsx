@@ -36,8 +36,7 @@ export default function Avatar({ name, size = 32 }) {
         height: size,
         fontSize: Math.max(12, Math.round(size * 0.36)),
         background: loaded ? '#23232E' : `rgba(${r},${g},${b},0.16)`,
-        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0) 60%)',
-        boxShadow: `${loaded ? 'inset 0 0 0 1px rgba(255,255,255,0.08)' : `inset 0 0 0 1px rgba(${r},${g},${b},0.4)`}, 0 1px 2px rgba(0,0,0,0.4)`,
+        boxShadow: loaded ? 'inset 0 0 0 1px rgba(255,255,255,0.08)' : `inset 0 0 0 1px rgba(${r},${g},${b},0.4)`,
         color: `rgb(${Math.min(r + 70, 255)},${Math.min(g + 70, 255)},${Math.min(b + 70, 255)})`,
       }}
     >
