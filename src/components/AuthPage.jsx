@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import BrandMark from './BrandMark'
 
-const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
+const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[16px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
 
 export default function AuthPage({ onAuth, apiUrl }) {
   const [username, setUsername] = useState('')
@@ -20,7 +20,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
         body: JSON.stringify({ username, password }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Errore')
+      if (!res.ok) throw new Error(data.error || 'Something went wrong')
       onAuth(data.token, data.user)
     } catch (err) {
       setError(err.message)
@@ -31,22 +31,22 @@ export default function AuthPage({ onAuth, apiUrl }) {
 
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-4">
-      <div className="w-full max-w-[380px]">
+      <div className="w-full max-w-[360px]">
         <div className="text-center mb-7">
           <BrandMark size={48} className="mx-auto mb-4" />
-          <h1 className="text-[22px] font-medium text-ink tracking-tight">Personals</h1>
-          <p className="text-[13px] text-ink-dim mt-1">Accedi al tuo account</p>
+          <h1 className="text-[24px] font-medium text-ink tracking-tight">Personals</h1>
+          <p className="text-[13px] text-ink-dim mt-1">Sign in to your account</p>
         </div>
 
-        <div className="card p-6">
+        <div className="card p-7">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-[12px] text-ink-dim mb-1.5">Username</label>
-              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Il tuo username" className={fieldClass} required autoFocus autoComplete="username" />
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Your username" className={fieldClass} required autoFocus autoComplete="username" />
             </div>
             <div>
               <label className="block text-[12px] text-ink-dim mb-1.5">Password</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="La tua password" className={fieldClass} required autoComplete="current-password" />
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Your password" className={fieldClass} required autoComplete="current-password" />
             </div>
 
             {error && (
@@ -56,7 +56,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
             )}
 
             <button type="submit" disabled={loading} className="w-full h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-              {loading ? 'Caricamento…' : 'Accedi'}
+              {loading ? 'Signing in…' : 'Sign in'}
             </button>
           </form>
         </div>
