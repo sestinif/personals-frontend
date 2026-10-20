@@ -8,18 +8,18 @@ const toneFor = (i) => (i < TONES.length ? TONES[i] : '#6B6B7B')
 
 function greeting() {
   const h = new Date().getHours()
-  if (h < 6) return 'Buonanotte'
-  if (h < 12) return 'Buongiorno'
-  if (h < 18) return 'Buon pomeriggio'
-  return 'Buonasera'
+  if (h < 12) return 'Good morning'
+  if (h < 18) return 'Good afternoon'
+  return 'Good evening'
 }
 
 function HeroAmount({ value }) {
   const [int, dec] = value.toFixed(2).split('.')
   return (
     <span className="font-number">
-      {Number(int).toLocaleString('it-IT', { useGrouping: true })}
-      <span className="text-ink-dim">,{dec} €</span>
+      <span className="text-ink-dim">€</span>
+      {Number(int).toLocaleString('en-US', { useGrouping: true })}
+      <span className="text-ink-dim">.{dec}</span>
     </span>
   )
 }
@@ -28,7 +28,7 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
   if (!data) return <SkeletonDashboard />
 
   const { grandTotal } = data
-  const monthName = new Date().toLocaleDateString('it-IT', { month: 'long', year: 'numeric' })
+  const monthName = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
   const subs = expenses.filter((e) => e.expense_type !== 'financing').length
   const fin = expenses.filter((e) => e.expense_type === 'financing').length
   const perAccount = accounts.length ? grandTotal / accounts.length : 0
@@ -38,22 +38,22 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
 
   return (
     <div>
-      <PageHead greeting={`${greeting()}, Federico`} title="Panoramica" />
-      <div className="text-[13px] text-ink-dim -mt-4 mb-5 capitalize">{monthName}</div>
+      <PageHead greeting={`${greeting()}, Federico`} title="Overview" />
+      <div className="text-[13px] text-ink-dim -mt-4 mb-5">{monthName}</div>
 
       <div className="grid grid-cols-1 min-[860px]:grid-cols-[1.5fr_1fr] gap-[14px] items-start">
         <div className="card p-[18px]">
-          <div className="text-[12px] text-ink-dim">Spesa mensile</div>
+          <div className="text-[12px] text-ink-dim">Monthly spend</div>
           <div className="text-[38px] max-[640px]:text-[32px] tracking-tight leading-[1.15] mt-[2px] mb-[4px] text-ink">
             <HeroAmount value={grandTotal} />
           </div>
           <div className="text-[13px] text-ink-dim">
-            ≈ {eur0(grandTotal * 12)} all'anno · {expenses.length} spese su {accounts.length} conti
+            ≈ {eur0(grandTotal * 12)} a year · {expenses.length} {expenses.length === 1 ? 'expense' : 'expenses'} across {accounts.length} {accounts.length === 1 ? 'account' : 'accounts'}
           </div>
         </div>
 
         <div className="card p-[18px]">
-          <div className="text-[12px] text-ink-dim mb-3">Ripartizione</div>
+          <div className="text-[12px] text-ink-dim mb-3">Breakdown</div>
           <div className="flex gap-[2px] mb-3">
             {positives.map((a, i) => (
               <span key={a.id} className="h-1 rounded-[2px]" style={{ flex: a.monthly, background: toneFor(i), minWidth: 2 }} />
@@ -73,9 +73,9 @@ export default function Dashboard({ data, expenses = [], accounts = [] }) {
       </div>
 
       <StatRow stats={[
-        { label: 'Abbonamenti', value: subs },
-        { label: 'Finanziamenti', value: fin },
-        { label: 'Media per conto', value: eur(perAccount) },
+        { label: 'Subscriptions', value: subs },
+        { label: 'Financing', value: fin },
+        { label: 'Average per account', value: eur(perAccount) },
       ]} />
     </div>
   )

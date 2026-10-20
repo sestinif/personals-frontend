@@ -12,7 +12,7 @@ export default function AmountField({ value, onChange, currency = '€', autoFoc
         value={value}
         onChange={(e) => onChange(e.target.value)}
         autoFocus={autoFocus}
-        placeholder="0,00"
+        placeholder="0.00"
         className="flex-1 w-0 min-w-0 p-0 bg-transparent border-0 outline-none text-ink text-[34px] tracking-tight font-number placeholder:text-ink-dim [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
       />
     </div>

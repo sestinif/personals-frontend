@@ -21,28 +21,28 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
           <Avatar name={account.name} size={44} />
           <div className="min-w-0">
             <h1 className="text-[24px] font-medium text-ink tracking-tight leading-tight truncate">{account.name}</h1>
-            <div className="text-[13px] text-ink-dim">{items.length} spese attive</div>
+            <div className="text-[13px] text-ink-dim">{items.length} active {items.length === 1 ? 'expense' : 'expenses'}</div>
           </div>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           {login && (
-            <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Accedi a ${account.name}`} className="h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[13px] max-[640px]:w-9 max-[640px]:px-0">
+            <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Log in to ${account.name}`} className="h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[13px] max-[640px]:w-9 max-[640px]:px-0">
               <ExternalLinkIcon className="w-4 h-4" />
-              <span className="max-[640px]:hidden">Accedi</span>
+              <span className="max-[640px]:hidden">Log in</span>
             </a>
           )}
-          <button onClick={() => setAcctSheet(true)} aria-label="Modifica conto" className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
+          <button onClick={() => setAcctSheet(true)} aria-label="Edit account" className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
             <PencilIcon className="w-4 h-4" />
           </button>
           <button onClick={() => onAddExpense(account.id)} className="inline-flex items-center justify-center gap-2 bg-accent text-bg font-medium rounded-lg h-9 px-3.5 text-[13px] hover:bg-brand-700 transition-colors max-[640px]:w-9 max-[640px]:px-0 max-[640px]:rounded-full">
             <PlusIcon className="w-4 h-4" />
-            <span className="max-[640px]:hidden">Aggiungi spesa</span>
+            <span className="max-[640px]:hidden">Add expense</span>
           </button>
         </div>
       </div>
 
       <div className="card p-[18px] mb-1">
-        <div className="text-[12px] text-ink-dim">Spesa mensile</div>
+        <div className="text-[12px] text-ink-dim">Monthly spend</div>
         <div className="text-[32px] tracking-tight mt-[2px] text-ink font-number">{eur(monthly)}</div>
       </div>
 
@@ -52,23 +52,23 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
         grouped={false}
         onEditExpense={onEditExpense}
         onDeleteExpense={onDeleteExpense}
-        emptyLabel="Nessuna spesa su questo conto"
+        emptyLabel="No expenses on this account"
       />
 
       <DetailSheet
         open={acctSheet}
         onClose={() => setAcctSheet(false)}
         title={account.name}
-        subtitle={`${items.length} spese`}
+        subtitle={`${items.length} ${items.length === 1 ? 'expense' : 'expenses'}`}
         avatar={<Avatar name={account.name} size={40} />}
-        amount={`${eur(monthly)}/mese`}
+        amount={`${eur(monthly)}/month`}
         rows={[
-          { label: 'Spese', value: items.length },
-          { label: 'Totale mensile', value: eur(monthly) },
+          { label: 'Expenses', value: items.length },
+          { label: 'Monthly total', value: eur(monthly) },
         ]}
         onEdit={() => { setAcctSheet(false); onEditAccount(account) }}
         onDelete={() => { setAcctSheet(false); onDeleteAccount(account.id) }}
-        deleteLabel="Elimina conto"
+        deleteLabel="Delete account"
       />
     </div>
   )

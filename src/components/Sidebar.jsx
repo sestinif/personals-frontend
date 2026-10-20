@@ -22,10 +22,10 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
         <BrandMark size={36} />
         <div className="min-w-0">
           <div className="text-[15px] font-medium text-ink leading-tight">Personals</div>
-          <div className="text-[12px] text-ink-dim">Spese ricorrenti</div>
+          <div className="text-[12px] text-ink-dim">Recurring expenses</div>
         </div>
         {onClose && (
-          <button onClick={onClose} aria-label="Chiudi menu" className="md:hidden ml-auto -mr-1 w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.04] transition-colors">
+          <button onClick={onClose} aria-label="Close menu" className="md:hidden ml-auto -mr-1 w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.04] transition-colors">
             <XIcon className="w-5 h-5" />
           </button>
         )}
@@ -38,7 +38,7 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
           <span className="truncate">Dashboard</span>
         </button>
 
-        <div className="mt-3 mb-1 px-3 text-[12px] text-ink-dim">Conti</div>
+        <div className="mt-3 mb-1 px-3 text-[12px] text-ink-dim">Accounts</div>
         {accounts.map((a) => {
           const active = activeView === `account-${a.id}`
           return (
@@ -55,13 +55,13 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
 
       <div className="px-3 pb-4 pt-2 space-y-1.5 border-t border-line">
         <button onClick={onAddExpense} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] font-medium text-bg bg-accent hover:bg-brand-700 transition-colors">
-          <PlusIcon className="w-[18px] h-[18px]" />Nuova spesa
+          <PlusIcon className="w-[18px] h-[18px]" />New expense
         </button>
         <button onClick={onAddAccount} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
-          <PlusIcon className="w-[18px] h-[18px]" />Nuovo conto
+          <PlusIcon className="w-[18px] h-[18px]" />New account
         </button>
         <button onClick={onLogout} className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
-          <LogoutIcon className="w-[18px] h-[18px]" />Esci
+          <LogoutIcon className="w-[18px] h-[18px]" />Log out
         </button>
       </div>
     </div>

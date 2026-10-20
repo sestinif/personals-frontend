@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { AccountIcon } from './Icons'
 
 const iconOptions = [
-  { value: 'building', label: 'Banca' },
-  { value: 'credit-card', label: 'Carta' },
+  { value: 'building', label: 'Bank' },
+  { value: 'credit-card', label: 'Card' },
   { value: 'wallet', label: 'Wallet' },
   { value: 'briefcase', label: 'Business' },
 ]
@@ -27,7 +27,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className={labelClass}>Nome conto</label>
+        <label className={labelClass}>Account name</label>
         <input
           type="text"
           value={form.name}
@@ -40,7 +40,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
       </div>
 
       <div>
-        <label className={labelClass}>Icona</label>
+        <label className={labelClass}>Icon</label>
         <div className="grid grid-cols-4 gap-2">
           {iconOptions.map((opt) => (
             <button
@@ -62,10 +62,10 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
 
       <div className="flex gap-3 pt-1">
         <button type="button" onClick={onCancel} className="flex-1 h-11 text-[14px] text-ink-dim bg-transparent border border-line rounded-lg hover:border-line-strong hover:text-ink transition-colors">
-          Annulla
+          Cancel
         </button>
         <button type="submit" className="flex-1 h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors">
-          {account ? 'Aggiorna' : 'Aggiungi'}
+          {account ? 'Update' : 'Add'}
         </button>
       </div>
     </form>

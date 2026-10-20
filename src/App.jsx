@@ -60,13 +60,13 @@ function AppContent({ onLogout }) {
     if (isEdit) await api(`/expenses/${expenseModal.expense.id}`, { method: 'PUT', body: data })
     else await api('/expenses', { method: 'POST', body: data })
     closeExpenseModal()
-    toast(isEdit ? 'Spesa aggiornata' : 'Spesa aggiunta', 'success')
+    toast(isEdit ? 'Expense updated' : 'Expense added', 'success')
     loadData()
   }
 
   const handleDeleteExpense = async (id) => {
     await api(`/expenses/${id}`, { method: 'DELETE' })
-    toast('Spesa eliminata', 'info')
+    toast('Expense deleted', 'info')
     loadData()
   }
 
@@ -81,13 +81,13 @@ function AppContent({ onLogout }) {
       return
     }
     setAccountModal({ open: false, account: null })
-    toast(isEdit ? 'Conto aggiornato' : 'Conto aggiunto', 'success')
+    toast(isEdit ? 'Account updated' : 'Account added', 'success')
     loadData()
   }
 
   const handleDeleteAccount = async (id) => {
     await api(`/accounts/${id}`, { method: 'DELETE' })
-    toast('Conto eliminato', 'info')
+    toast('Account deleted', 'info')
     setActiveView('dashboard')
     loadData()
   }
@@ -118,7 +118,7 @@ function AppContent({ onLogout }) {
 
       <main className="flex-1 overflow-y-auto">
         <div className="md:hidden sticky top-0 z-10 bg-bg border-b border-line px-4 py-3">
-          <button onClick={() => setSidebarOpen(true)} aria-label="Apri menu" className="w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink">
+          <button onClick={() => setSidebarOpen(true)} aria-label="Open menu" className="w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
           </button>
         </div>
@@ -140,7 +140,7 @@ function AppContent({ onLogout }) {
         </div>
       </main>
 
-      <Modal open={expenseModal.open} onClose={closeExpenseModal} title={expenseModal.expense ? 'Modifica spesa' : 'Nuova spesa'}>
+      <Modal open={expenseModal.open} onClose={closeExpenseModal} title={expenseModal.expense ? 'Edit expense' : 'New expense'}>
         <ExpenseForm
           expense={expenseModal.expense}
           accounts={expenseModal.defaultAccountId
@@ -151,7 +151,7 @@ function AppContent({ onLogout }) {
         />
       </Modal>
 
-      <Modal open={accountModal.open} onClose={() => setAccountModal({ open: false, account: null })} title={accountModal.account ? 'Modifica conto' : 'Nuovo conto'}>
+      <Modal open={accountModal.open} onClose={() => setAccountModal({ open: false, account: null })} title={accountModal.account ? 'Edit account' : 'New account'}>
         <AccountForm account={accountModal.account} onSubmit={handleSaveAccount} onCancel={() => setAccountModal({ open: false, account: null })} />
       </Modal>
     </div>

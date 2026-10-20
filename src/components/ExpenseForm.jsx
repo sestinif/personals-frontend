@@ -40,7 +40,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
   }
 
   const monthlyHint = form.frequency === 'yearly' && form.amount
-    ? `${(parseFloat(form.amount) / 12).toFixed(2).replace('.', ',')} €/mese`
+    ? `€${(parseFloat(form.amount) / 12).toFixed(2)}/month`
     : null
 
   return (
@@ -51,23 +51,23 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
       </div>
 
       <div>
-        <label className={labelClass}>Nome spesa</label>
+        <label className={labelClass}>Expense name</label>
         <input type="text" value={form.name} onChange={(e) => set({ name: e.target.value })} placeholder="Netflix, MacBook…" className={fieldClass} required />
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className={labelClass}>Tipo</label>
+          <label className={labelClass}>Type</label>
           <Segmented
-            options={[{ value: 'subscription', label: 'Abbonamento' }, { value: 'financing', label: 'Finanziamento' }]}
+            options={[{ value: 'subscription', label: 'Subscription' }, { value: 'financing', label: 'Financing' }]}
             value={form.expense_type}
             onChange={(v) => set({ expense_type: v })}
           />
         </div>
         <div>
-          <label className={labelClass}>Frequenza</label>
+          <label className={labelClass}>Frequency</label>
           <Segmented
-            options={[{ value: 'monthly', label: 'Mensile' }, { value: 'yearly', label: 'Annuale' }]}
+            options={[{ value: 'monthly', label: 'Monthly' }, { value: 'yearly', label: 'Yearly' }]}
             value={form.frequency}
             onChange={(v) => set({ frequency: v })}
           />
@@ -76,19 +76,19 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className={labelClass}>Giorno rinnovo</label>
+          <label className={labelClass}>Renewal day</label>
           <input type="text" value={form.renewal_day} onChange={(e) => set({ renewal_day: e.target.value })} placeholder="15" className={fieldClass} />
         </div>
         {form.expense_type === 'financing' && (
           <div>
-            <label className={labelClass}>Scadenza</label>
+            <label className={labelClass}>End date</label>
             <input type="date" value={form.end_date} onChange={(e) => set({ end_date: e.target.value })} className={fieldClass} />
           </div>
         )}
       </div>
 
       <div>
-        <label className={labelClass}>Conto</label>
+        <label className={labelClass}>Account</label>
         <select value={form.account_id} onChange={(e) => set({ account_id: e.target.value })} className={fieldClass}>
           {accounts.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
@@ -96,10 +96,10 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
 
       <div className="flex gap-3 pt-1">
         <button type="button" onClick={onCancel} className="flex-1 h-11 text-[14px] text-ink-dim bg-transparent border border-line rounded-lg hover:border-line-strong hover:text-ink transition-colors">
-          Annulla
+          Cancel
         </button>
         <button type="submit" className="flex-1 h-11 text-[14px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors">
-          {expense ? 'Aggiorna' : 'Aggiungi'}
+          {expense ? 'Update' : 'Add'}
         </button>
       </div>
     </form>

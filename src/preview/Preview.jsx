@@ -21,19 +21,19 @@ function Kit() {
   const [amt, setAmt] = useState('')
   return (
     <div className="space-y-6">
-      <PageHead greeting="Buongiorno, Federico" title="Panoramica" actionLabel="Aggiungi spesa" onAction={noop} />
+      <PageHead greeting="Good morning, Federico" title="Overview" actionLabel="Add expense" onAction={noop} />
       <div className="flex items-center gap-4">
         <Avatar name="Revolut" size={40} />
         <Avatar name="Intesa Sanpaolo" size={40} />
         <Avatar name="American Express" size={40} />
-        <Avatar name="Conto personale" size={40} />
+        <Avatar name="Personal account" size={40} />
       </div>
-      <StatRow stats={[{ label: 'Abbonamenti', value: 9 }, { label: 'Finanziamenti', value: 2 }, { label: 'Media per conto', value: '93,23 €' }]} />
-      <Segmented options={[{ value: 'subscription', label: 'Abbonamento' }, { value: 'financing', label: 'Finanziamento' }]} value={seg} onChange={setSeg} />
+      <StatRow stats={[{ label: 'Subscriptions', value: 9 }, { label: 'Financing', value: 2 }, { label: 'Average per account', value: '€93.23' }]} />
+      <Segmented options={[{ value: 'subscription', label: 'Subscription' }, { value: 'financing', label: 'Financing' }]} value={seg} onChange={setSeg} />
       <AmountField value={amt} onChange={setAmt} />
       <div className="card p-[18px]">
-        <LedgerRow title="Netflix" sub="Abbonamento · giorno 15" amount="17,99 €" onClick={noop} />
-        <LedgerRow title="Assicurazione auto" sub="Annuale · 1.080,00 €/anno" amount="1.080,00 €" amountSub="90,00 €/mese" onClick={noop} />
+        <LedgerRow title="Netflix" sub="Subscription · Day 15" amount="€17.99" onClick={noop} />
+        <LedgerRow title="Car insurance" sub="Yearly · €1,080.00/year" amount="€1,080.00" amountSub="€90.00/month" onClick={noop} />
       </div>
     </div>
   )
@@ -43,10 +43,10 @@ function Sheet() {
   const [open, setOpen] = useState(true)
   return (
     <div>
-      <button onClick={() => setOpen(true)} className="btn-accent px-4 py-2 text-[14px]">Apri scheda</button>
-      <DetailSheet open={open} onClose={() => setOpen(false)} title="Netflix" subtitle="Revolut" avatar={<Avatar name="Revolut" size={40} />} amount="17,99 €/mese"
-        rows={[{ label: 'Tipo', value: 'Abbonamento' }, { label: 'Frequenza', value: 'Mensile' }, { label: 'Rinnovo', value: 'Giorno 15' }, { label: 'Conto', value: 'Revolut' }]}
-        onEdit={noop} onDelete={() => setOpen(false)} deleteLabel="Elimina spesa" />
+      <button onClick={() => setOpen(true)} className="btn-accent px-4 py-2 text-[14px]">Open sheet</button>
+      <DetailSheet open={open} onClose={() => setOpen(false)} title="Netflix" subtitle="Revolut" avatar={<Avatar name="Revolut" size={40} />} amount="€17.99/month"
+        rows={[{ label: 'Type', value: 'Subscription' }, { label: 'Frequency', value: 'Monthly' }, { label: 'Renewal', value: 'Day 15' }, { label: 'Account', value: 'Revolut' }]}
+        onEdit={noop} onDelete={() => setOpen(false)} deleteLabel="Delete expense" />
     </div>
   )
 }
@@ -54,8 +54,8 @@ function Sheet() {
 function Forms() {
   return (
     <div className="grid md:grid-cols-2 gap-8">
-      <div className="card p-5"><div className="text-[15px] font-medium mb-4">Nuova spesa</div><ExpenseForm accounts={accounts} onSubmit={noop} onCancel={noop} /></div>
-      <div className="card p-5"><div className="text-[15px] font-medium mb-4">Nuovo conto</div><AccountForm onSubmit={noop} onCancel={noop} /></div>
+      <div className="card p-5"><div className="text-[15px] font-medium mb-4">New expense</div><ExpenseForm accounts={accounts} onSubmit={noop} onCancel={noop} /></div>
+      <div className="card p-5"><div className="text-[15px] font-medium mb-4">New account</div><AccountForm onSubmit={noop} onCancel={noop} /></div>
     </div>
   )
 }
