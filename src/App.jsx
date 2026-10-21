@@ -6,7 +6,6 @@ import ExpenseForm from './components/ExpenseForm'
 import AccountForm from './components/AccountForm'
 import AuthPage from './components/AuthPage'
 import Sidebar from './components/Sidebar'
-import Withdrawals from './components/Withdrawals'
 import { ToastProvider, useToast } from './components/Toast'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
@@ -53,6 +52,9 @@ function AppContent({ onLogout }) {
   }, [])
 
   useEffect(() => { loadData() }, [loadData])
+
+  // Stable function: the Overview refetches whenever its identity changes
+  const loadWithdrawals = useCallback((month) => api(`/withdrawals${month ? `?month=${month}` : ''}`), [])
 
   const closeExpenseModal = () => setExpenseModal({ open: false, expense: null, defaultAccountId: null })
 
@@ -125,9 +127,7 @@ function AppContent({ onLogout }) {
         </div>
 
         <div key={activeView} className="px-5 md:px-8 py-8 max-w-5xl">
-          {activeView === 'withdrawals' ? (
-            <Withdrawals load={(month) => api(`/withdrawals${month ? `?month=${month}` : ''}`)} />
-          ) : activeAccount ? (
+          {activeAccount ? (
             <AccountView
               account={activeAccount}
               expenses={expenses}
@@ -138,7 +138,7 @@ function AppContent({ onLogout }) {
               onDeleteAccount={handleDeleteAccount}
             />
           ) : (
-            <Dashboard data={dashboard} accounts={accounts} expenses={expenses} />
+            <Dashboard data={dashboard} accounts={accounts} expenses={expenses} loadWithdrawals={loadWithdrawals} />
           )}
         </div>
       </main>

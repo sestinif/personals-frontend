@@ -12,7 +12,6 @@ import AmountField from '../components/AmountField'
 import ExpenseForm from '../components/ExpenseForm'
 import AccountForm from '../components/AccountForm'
 import AuthPage from '../components/AuthPage'
-import Withdrawals from '../components/Withdrawals'
 import { dashboard, accounts, expenses } from './fixtures'
 
 const noop = () => {}
@@ -22,14 +21,16 @@ const wdItems = [
   { date: '2026-11-12', transfer_id: '4', name: 'Revolut Personale, fine', amount_eur: 1500, share: 1, counted_eur: 1500 },
   { date: '2026-11-03', transfer_id: '3', name: 'Revolut Personale, fine', amount_eur: 600, share: 1, counted_eur: 600 },
 ]
+const wdMonths = [{ month: '2026-11', total_eur: 2500 }, { month: '2026-12', total_eur: 420 }]
+const wdBase = { configured: true, start_month: '2026-11', current_month: '2026-12', months: wdMonths, sync: { added: 0, error: null } }
 const wdMonth = (m) => m === '2026-11'
-  ? { configured: true, month: m, total_eur: 2500, items: wdItems, start_month: '2026-11', current_month: '2026-12', not_counted: { count: 2, total_eur: 5063 }, sync: { added: 0, error: null } }
-  : { configured: true, month: m, total_eur: 0, items: [], start_month: '2026-11', current_month: '2026-12', not_counted: { count: 0, total_eur: 0 }, sync: { added: 0, error: null } }
+  ? { ...wdBase, month: m, total_eur: 2500, items: wdItems, not_counted: { count: 2, total_eur: 5063 } }
+  : { ...wdBase, month: m, total_eur: 420, items: [{ date: '2026-12-02', transfer_id: '9', name: 'Revolut Personale, fine', amount_eur: 420, share: 1, counted_eur: 420 }], not_counted: { count: 0, total_eur: 0 } }
 const wdLoad = (variant) => async (m) => {
   if (variant === 'down') throw new Error('Numbers did not answer. Try again in a minute.')
   if (variant === 'off') return { configured: false }
   if (variant === 'early') return { configured: true, month: '2026-10', total_eur: 0, items: [], start_month: '2026-11', current_month: '2026-10', not_counted: { count: 0, total_eur: 0 }, sync: {} }
-  const d = wdMonth(m || '2026-11')
+  const d = wdMonth(m || '2026-12')
   return variant === 'warn' ? { ...d, sync: { added: 0, error: 'Wise does not let Numbers read the statement.' } } : d
 }
 
@@ -99,7 +100,7 @@ export default function Preview() {
 
   if (p === 'login') return <AuthPage onAuth={noop} apiUrl="" />
   if (p === 'frame') return <Frame />
-  if (p.startsWith('withdrawals')) return <div className="min-h-screen bg-bg text-ink"><div className="mx-auto max-w-5xl px-8 py-8"><Withdrawals load={wdLoad(p.split('-')[1])} /></div></div>
+  if (p.startsWith('overview')) return <div className="min-h-screen bg-bg text-ink"><div className="mx-auto max-w-5xl px-8 py-8"><Dashboard data={dashboard} accounts={accounts} expenses={expenses} loadWithdrawals={wdLoad(p.split('-')[1])} /></div></div>
 
   let content
   if (p === 'kit') content = <Kit />
