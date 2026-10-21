@@ -6,6 +6,7 @@ import ExpenseForm from './components/ExpenseForm'
 import AccountForm from './components/AccountForm'
 import AuthPage from './components/AuthPage'
 import Sidebar from './components/Sidebar'
+import Withdrawals from './components/Withdrawals'
 import { ToastProvider, useToast } from './components/Toast'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
@@ -124,7 +125,9 @@ function AppContent({ onLogout }) {
         </div>
 
         <div key={activeView} className="px-5 md:px-8 py-8 max-w-5xl">
-          {activeAccount ? (
+          {activeView === 'withdrawals' ? (
+            <Withdrawals load={(month) => api(`/withdrawals${month ? `?month=${month}` : ''}`)} />
+          ) : activeAccount ? (
             <AccountView
               account={activeAccount}
               expenses={expenses}

@@ -12,9 +12,26 @@ import AmountField from '../components/AmountField'
 import ExpenseForm from '../components/ExpenseForm'
 import AccountForm from '../components/AccountForm'
 import AuthPage from '../components/AuthPage'
+import Withdrawals from '../components/Withdrawals'
 import { dashboard, accounts, expenses } from './fixtures'
 
 const noop = () => {}
+
+const wdItems = [
+  { date: '2026-11-18', transfer_id: '5', name: 'Rent', amount_eur: 800, share: 0.5, counted_eur: 400 },
+  { date: '2026-11-12', transfer_id: '4', name: 'Revolut Personale, fine', amount_eur: 1500, share: 1, counted_eur: 1500 },
+  { date: '2026-11-03', transfer_id: '3', name: 'Revolut Personale, fine', amount_eur: 600, share: 1, counted_eur: 600 },
+]
+const wdMonth = (m) => m === '2026-11'
+  ? { configured: true, month: m, total_eur: 2500, items: wdItems, start_month: '2026-11', current_month: '2026-12', not_counted: { count: 2, total_eur: 5063 }, sync: { added: 0, error: null } }
+  : { configured: true, month: m, total_eur: 0, items: [], start_month: '2026-11', current_month: '2026-12', not_counted: { count: 0, total_eur: 0 }, sync: { added: 0, error: null } }
+const wdLoad = (variant) => async (m) => {
+  if (variant === 'down') throw new Error('Numbers did not answer. Try again in a minute.')
+  if (variant === 'off') return { configured: false }
+  if (variant === 'early') return { configured: true, month: '2026-10', total_eur: 0, items: [], start_month: '2026-11', current_month: '2026-10', not_counted: { count: 0, total_eur: 0 }, sync: {} }
+  const d = wdMonth(m || '2026-11')
+  return variant === 'warn' ? { ...d, sync: { added: 0, error: 'Wise does not let Numbers read the statement.' } } : d
+}
 
 function Kit() {
   const [seg, setSeg] = useState('subscription')
@@ -82,6 +99,7 @@ export default function Preview() {
 
   if (p === 'login') return <AuthPage onAuth={noop} apiUrl="" />
   if (p === 'frame') return <Frame />
+  if (p.startsWith('withdrawals')) return <div className="min-h-screen bg-bg text-ink"><div className="mx-auto max-w-5xl px-8 py-8"><Withdrawals load={wdLoad(p.split('-')[1])} /></div></div>
 
   let content
   if (p === 'kit') content = <Kit />

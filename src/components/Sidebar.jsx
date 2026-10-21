@@ -1,6 +1,6 @@
 import Avatar from './Avatar'
 import BrandMark from './BrandMark'
-import { PlusIcon, ChartIcon, XIcon } from './Icons'
+import { PlusIcon, ChartIcon, ArrowOutIcon, XIcon } from './Icons'
 
 function LogoutIcon({ className }) {
   return (
@@ -36,6 +36,10 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
         <button onClick={() => onSelect('dashboard')} className={itemClass(activeView === 'dashboard')}>
           <ChartIcon className="w-[18px] h-[18px]" />
           <span className="truncate">Dashboard</span>
+        </button>
+        <button onClick={() => onSelect('withdrawals')} className={itemClass(activeView === 'withdrawals')}>
+          <ArrowOutIcon className="w-[18px] h-[18px]" />
+          <span className="truncate">Withdrawals</span>
         </button>
 
         <div className="mt-3 mb-1 px-3 text-[12px] text-ink-dim">Accounts</div>

@@ -86,6 +86,22 @@ export function CalendarIcon({ className = 'w-5 h-5' }) {
   )
 }
 
+export function ArrowOutIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+    </svg>
+  )
+}
+
+export function ChevronIcon({ className = 'w-5 h-5', dir = 'right' }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d={dir === 'left' ? 'M15.75 19.5 8.25 12l7.5-7.5' : 'm8.25 4.5 7.5 7.5-7.5 7.5'} />
+    </svg>
+  )
+}
+
 const iconMap = {
   wallet: WalletIcon,
   'credit-card': CreditCardIcon,
