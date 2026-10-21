@@ -88,7 +88,7 @@ function Frame() {
         <div className="px-8 py-8 max-w-5xl">
           {acct
             ? <AccountView account={acct} expenses={expenses} onAddExpense={noop} onEditExpense={noop} onDeleteExpense={noop} onEditAccount={noop} onDeleteAccount={noop} />
-            : <Dashboard data={dashboard} accounts={accounts} expenses={expenses} />}
+            : <Dashboard loadWithdrawals={wdLoad()} />}
         </div>
       </main>
     </div>
@@ -100,15 +100,14 @@ export default function Preview() {
 
   if (p === 'login') return <AuthPage onAuth={noop} apiUrl="" />
   if (p === 'frame') return <Frame />
-  if (p.startsWith('overview')) return <div className="min-h-screen bg-bg text-ink"><div className="mx-auto max-w-5xl px-8 py-8"><Dashboard data={dashboard} accounts={accounts} expenses={expenses} loadWithdrawals={wdLoad(p.split('-')[1])} /></div></div>
+  if (p.startsWith('overview')) return <div className="min-h-screen bg-bg text-ink"><div className="mx-auto max-w-5xl px-8 py-8"><Dashboard loadWithdrawals={wdLoad(p.split('-')[1])} /></div></div>
 
   let content
   if (p === 'kit') content = <Kit />
   else if (p === 'sheet') content = <Sheet />
   else if (p === 'forms') content = <Forms />
   else if (p === 'account') content = <AccountView account={accounts.find((a) => a.id === 3)} expenses={expenses} onAddExpense={noop} onEditExpense={noop} onDeleteExpense={noop} onEditAccount={noop} onDeleteAccount={noop} />
-  else if (p === 'dashboard-empty') content = <Dashboard data={{ accounts: [], grandTotal: 0, totalExpenses: 0 }} accounts={[]} expenses={[]} />
-  else content = <Dashboard data={dashboard} accounts={accounts} expenses={expenses} />
+  else content = <Dashboard loadWithdrawals={wdLoad()} />
 
   return (
     <div className="min-h-screen bg-bg text-ink">

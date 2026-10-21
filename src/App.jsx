@@ -138,7 +138,7 @@ function AppContent({ onLogout }) {
               onDeleteAccount={handleDeleteAccount}
             />
           ) : (
-            <Dashboard data={dashboard} accounts={accounts} expenses={expenses} loadWithdrawals={loadWithdrawals} />
+            <Dashboard loadWithdrawals={loadWithdrawals} />
           )}
         </div>
       </main>
