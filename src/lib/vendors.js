@@ -9,7 +9,7 @@ const VENDORS = [
   ['xbox', 'xbox.com'], ['nintendo', 'nintendo.com'], ['twitch', 'twitch.tv'], ['crunchyroll', 'crunchyroll.com'],
   ['chatgpt', 'openai.com'], ['openai', 'openai.com'], ['claude', 'claude.ai'], ['anthropic', 'anthropic.com'],
   ['gemini', 'gemini.google.com'], ['google one', 'one.google.com'], ['google', 'google.com'], ['microsoft', 'microsoft.com'],
-  ['office 365', 'microsoft.com'], ['dropbox', 'dropbox.com'], ['1password', '1password.com'], ['nordvpn', 'nordvpn.com'],
+  ['office 365', 'microsoft.com'], ['dropbox', 'dropbox.com'], ['1password', '1password.com'], ['nordvpn', 'nordvpn.com'], ['nordpass', 'nordpass.com'], ['faceit', 'faceit.com'],
   ['expressvpn', 'expressvpn.com'], ['notion', 'notion.so'], ['canva', 'canva.com'], ['adobe', 'adobe.com'],
   ['duolingo', 'duolingo.com'], ['linkedin', 'linkedin.com'], ['patreon', 'patreon.com'], ['substack', 'substack.com'],
   ['tim', 'tim.it'], ['vodafone', 'vodafone.it'], ['iliad', 'iliad.it'], ['fastweb', 'fastweb.it'], ['windtre', 'windtre.it'],

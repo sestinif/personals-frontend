@@ -11,6 +11,8 @@ test('the vendor is read from the expense name, as a whole word', () => {
   assert.equal(vendorDomain('Abbonamento ChatGPT'), 'openai.com')
   assert.equal(vendorDomain('Amazon Prime'), 'amazon.com')
   assert.equal(vendorDomain('MacBook Pro'), 'apple.com')
+  assert.equal(vendorDomain('FACEIT Premium'), 'faceit.com')
+  assert.equal(vendorDomain('NordPass'), 'nordpass.com')
   assert.equal(vendorDomain('iPhone 17 a rate'), 'apple.com')
 })
 
