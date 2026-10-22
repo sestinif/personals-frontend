@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { bankBrand } from '../lib/banks'
+import { vendorDomain } from '../lib/vendors'
 
 // Indigo-family tones (same palette as the dashboard distribution) + one grey,
 // used only for the initials fallback chip.
@@ -10,9 +11,10 @@ function toneFor(s) {
   return TONES[h % TONES.length]
 }
 
-// Avatar: shows the real bank logo (via Google's favicon service, which — unlike
-// the retired Clearbit — actually resolves). Falls back to initials on a soft
-// indigo chip when there is no domain or the logo fails to load.
+// Avatar: shows the real logo of a bank or of whoever an expense is paid to
+// (Netflix, Spotify…), via Google's favicon service, cut to a circle like every
+// logo in the apps. Falls back to initials on a soft indigo chip when there is no
+// known domain or the logo fails to load.
 export default function Avatar({ name, size = 32 }) {
   const [loaded, setLoaded] = useState(false)
   const brand = bankBrand(name)
@@ -26,7 +28,8 @@ export default function Avatar({ name, size = 32 }) {
     .toUpperCase()
 
   const [r, g, b] = toneFor(label.toLowerCase())
-  const logo = brand?.domain ? `https://www.google.com/s2/favicons?domain=${brand.domain}&sz=64` : null
+  const domain = brand?.domain || vendorDomain(name)
+  const logo = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : null
 
   return (
     <div
@@ -53,7 +56,7 @@ export default function Avatar({ name, size = 32 }) {
           onLoad={() => setLoaded(true)}
           onError={() => setLoaded(false)}
           className="absolute inset-0 m-auto transition-opacity duration-200"
-          style={{ width: Math.round(size * 0.58), height: Math.round(size * 0.58), objectFit: 'contain', opacity: loaded ? 1 : 0 }}
+          style={{ width: Math.round(size * 0.625), height: Math.round(size * 0.625), objectFit: 'cover', borderRadius: '50%', opacity: loaded ? 1 : 0 }}
         />
       )}
     </div>

@@ -13,6 +13,7 @@ export default function ExpenseLedger({ expenses, accounts, onEditExpense, onDel
   const row = (e) => (
     <LedgerRow
       key={e.id}
+      avatar={<Avatar name={e.name} size={32} />}
       title={e.name}
       sub={expenseSub(e)}
       amount={eur(e.amount)}
