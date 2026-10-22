@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import AmountField from './AmountField'
 import Segmented from './Segmented'
+import { noAutofill } from '../lib/noAutofill'
 
 const fieldClass = 'w-full h-11 px-3 bg-transparent border border-line-strong rounded-lg text-ink text-[15px] placeholder:text-ink-dim focus:border-accent outline-none transition-colors'
 const labelClass = 'block text-[12px] text-ink-dim mb-1.5'
@@ -52,7 +53,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
 
       <div>
         <label className={labelClass}>Expense Name</label>
-        <input type="text" value={form.name} onChange={(e) => set({ name: e.target.value })} placeholder="Netflix, MacBook…" className={fieldClass} required />
+        <input {...noAutofill('personals-expense-name')} type="text" value={form.name} onChange={(e) => set({ name: e.target.value })} placeholder="Netflix, MacBook…" className={fieldClass} required />
       </div>
 
       <div className="grid grid-cols-2 gap-3">
@@ -77,12 +78,12 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className={labelClass}>Renewal Day</label>
-          <input type="text" value={form.renewal_day} onChange={(e) => set({ renewal_day: e.target.value })} placeholder="15" className={fieldClass} />
+          <input {...noAutofill('personals-renewal-day')} type="text" value={form.renewal_day} onChange={(e) => set({ renewal_day: e.target.value })} placeholder="15" className={fieldClass} />
         </div>
         {form.expense_type === 'financing' && (
           <div>
             <label className={labelClass}>End Date</label>
-            <input type="date" value={form.end_date} onChange={(e) => set({ end_date: e.target.value })} className={fieldClass} />
+            <input {...noAutofill('personals-end-date')} type="date" value={form.end_date} onChange={(e) => set({ end_date: e.target.value })} className={fieldClass} />
           </div>
         )}
       </div>

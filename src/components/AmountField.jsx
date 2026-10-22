@@ -1,3 +1,5 @@
+import { noAutofill } from '../lib/noAutofill'
+
 // Big amount input: the largest thing in a form. The symbol sits left in grey.
 // width:0 + flex keeps a number input from widening the whole page on phones.
 export default function AmountField({ value, onChange, currency = '€', autoFocus }) {
@@ -5,6 +7,7 @@ export default function AmountField({ value, onChange, currency = '€', autoFoc
     <div className="flex items-baseline gap-1 pb-2.5 border-b border-line-strong focus-within:border-accent">
       <span className="text-[34px] tracking-tight text-ink-dim font-number">{currency}</span>
       <input
+        {...noAutofill('personals-amount')}
         type="number"
         step="0.01"
         min="0"

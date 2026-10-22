@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AccountIcon } from './Icons'
+import { noAutofill } from '../lib/noAutofill'
 
 const iconOptions = [
   { value: 'building', label: 'Bank' },
@@ -29,6 +30,7 @@ export default function AccountForm({ account, onSubmit, onCancel }) {
       <div>
         <label className={labelClass}>Account Name</label>
         <input
+          {...noAutofill('personals-account-name')}
           type="text"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
