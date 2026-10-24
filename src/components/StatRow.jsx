@@ -6,8 +6,8 @@ export default function StatRow({ stats }) {
     <div className="grid grid-cols-3 gap-4 py-5 border-b border-line">
       {stats.map((s, i) => (
         <div key={i} className="min-w-0">
-          <div className="text-[12px] text-ink-dim mb-1">{s.label}</div>
-          <div className={`text-[24px] font-medium tracking-tight font-number truncate ${toneClass(s.tone)}`}>
+          <div className="text-[13px] text-ink-dim mb-1">{s.label}</div>
+          <div className={`text-[25px] font-medium tracking-tight font-number truncate ${toneClass(s.tone)}`}>
             {s.value}
           </div>
         </div>

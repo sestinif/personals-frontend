@@ -61,7 +61,7 @@ function Sheet() {
   const [open, setOpen] = useState(true)
   return (
     <div>
-      <button onClick={() => setOpen(true)} className="btn-accent px-4 py-2 text-[14px]">Open Sheet</button>
+      <button onClick={() => setOpen(true)} className="btn-accent px-4 py-2 text-[15px]">Open Sheet</button>
       <DetailSheet open={open} onClose={() => setOpen(false)} title="Netflix" subtitle="Revolut" avatar={<Avatar name="Revolut" size={40} />} amount="€17.99/month"
         rows={[{ label: 'Type', value: 'Subscription' }, { label: 'Frequency', value: 'Monthly' }, { label: 'Renewal', value: 'Day 15' }, { label: 'Account', value: 'Revolut' }]}
         onEdit={noop} onDelete={() => setOpen(false)} deleteLabel="Delete Expense" />
@@ -72,8 +72,8 @@ function Sheet() {
 function Forms() {
   return (
     <div className="grid md:grid-cols-2 gap-8">
-      <div className="card p-5"><div className="text-[15px] font-medium mb-4">New Expense</div><ExpenseForm accounts={accounts} onSubmit={noop} onCancel={noop} /></div>
-      <div className="card p-5"><div className="text-[15px] font-medium mb-4">New Account</div><AccountForm onSubmit={noop} onCancel={noop} /></div>
+      <div className="card p-5"><div className="text-[16px] font-medium mb-4">New Expense</div><ExpenseForm accounts={accounts} onSubmit={noop} onCancel={noop} /></div>
+      <div className="card p-5"><div className="text-[16px] font-medium mb-4">New Account</div><AccountForm onSubmit={noop} onCancel={noop} /></div>
     </div>
   )
 }

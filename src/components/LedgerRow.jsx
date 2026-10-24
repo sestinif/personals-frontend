@@ -10,13 +10,13 @@ export default function LedgerRow({ avatar, title, sub, amount, amountSub, tone,
       <span className="min-w-0 flex items-center gap-3">
         {avatar}
         <span className="min-w-0">
-          <span className="block text-[14px] text-ink truncate">{title}</span>
-          {sub && <span className="block text-[12px] text-ink-dim truncate mt-[1px]">{sub}</span>}
+          <span className="block text-[15px] text-ink truncate">{title}</span>
+          {sub && <span className="block text-[13px] text-ink-dim truncate mt-[1px]">{sub}</span>}
         </span>
       </span>
       <span className="text-right whitespace-nowrap">
-        <span className={`block text-[14px] font-number ${amtClass}`}>{amount}</span>
-        {amountSub && <span className="block text-[12px] text-ink-dim font-number mt-[1px]">{amountSub}</span>}
+        <span className={`block text-[15px] font-number ${amtClass}`}>{amount}</span>
+        {amountSub && <span className="block text-[13px] text-ink-dim font-number mt-[1px]">{amountSub}</span>}
       </span>
     </button>
   )

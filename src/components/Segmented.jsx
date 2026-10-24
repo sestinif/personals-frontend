@@ -7,7 +7,7 @@ export default function Segmented({ options, value, onChange }) {
           key={o.value}
           type="button"
           onClick={() => onChange(o.value)}
-          className={`py-2 rounded-md text-[13px] transition-colors truncate ${
+          className={`py-2 rounded-md text-[14px] transition-colors truncate ${
             value === o.value ? 'bg-surface2 text-ink font-medium' : 'text-ink-dim hover:text-ink'
           }`}
         >

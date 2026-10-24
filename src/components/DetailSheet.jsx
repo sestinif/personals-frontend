@@ -56,17 +56,17 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
         <div className="flex items-center gap-3 mb-3">
           {avatar}
           <div className="flex-1 min-w-0">
-            <div className="text-[15px] text-ink truncate">{title}</div>
-            {subtitle && <div className="text-[12px] text-ink-dim truncate">{subtitle}</div>}
+            <div className="text-[16px] text-ink truncate">{title}</div>
+            {subtitle && <div className="text-[13px] text-ink-dim truncate">{subtitle}</div>}
           </div>
           <button onClick={onClose} aria-label="Close" className="hidden sm:inline-flex w-8 h-8 items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink">
             <XIcon className="w-5 h-5" />
           </button>
         </div>
-        {amount && <div className="text-[28px] tracking-tight text-ink mb-3 font-number">{amount}</div>}
+        {amount && <div className="text-[29px] tracking-tight text-ink mb-3 font-number">{amount}</div>}
         <dl>
           {rows.map((r, i) => (
-            <div key={i} className="flex items-center justify-between gap-4 py-[11px] border-t border-line text-[13px]">
+            <div key={i} className="flex items-center justify-between gap-4 py-[11px] border-t border-line text-[14px]">
               <dt className="text-ink-dim">{r.label}</dt>
               <dd className="text-ink text-right min-w-0 break-words">{r.value}</dd>
             </div>
@@ -74,13 +74,13 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
         </dl>
         <div className="flex gap-2 mt-4">
           {onEdit && (
-            <button onClick={onEdit} className="flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[14px] text-ink bg-transparent border border-line rounded-[10px] hover:border-line-strong">
+            <button onClick={onEdit} className="flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-ink bg-transparent border border-line rounded-[10px] hover:border-line-strong">
               <PencilIcon className="w-4 h-4" />Edit
             </button>
           )}
           <button
             onClick={handleDelete}
-            className={`flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[14px] text-neg rounded-[10px] border ${armed ? 'bg-neg/[0.12] border-neg/40' : 'bg-transparent border-line'}`}
+            className={`flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-neg rounded-[10px] border ${armed ? 'bg-neg/[0.12] border-neg/40' : 'bg-transparent border-line'}`}
           >
             <TrashIcon className="w-4 h-4" />{armed ? 'Confirm' : deleteLabel}
           </button>

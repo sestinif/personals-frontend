@@ -40,7 +40,7 @@ export default function Modal({ open, onClose, title, children }) {
         }`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
-          <h3 className="text-[15px] font-medium text-ink">{title}</h3>
+          <h3 className="text-[16px] font-medium text-ink">{title}</h3>
           <button onClick={onClose} aria-label="Close" className="w-8 h-8 -mr-1.5 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.06] transition-colors">
             <XIcon className="w-5 h-5" />
           </button>

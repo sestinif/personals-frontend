@@ -23,7 +23,7 @@ export default function ExpenseLedger({ expenses, accounts, onEditExpense, onDel
   )
 
   if (expenses.length === 0) {
-    return <div className="py-12 text-center text-[14px] text-ink-dim">{emptyLabel}</div>
+    return <div className="py-12 text-center text-[15px] text-ink-dim">{emptyLabel}</div>
   }
 
   const groups = accounts
@@ -35,7 +35,7 @@ export default function ExpenseLedger({ expenses, accounts, onEditExpense, onDel
       {grouped
         ? groups.map(({ account, items }) => (
             <div key={account.id}>
-              <div className="flex items-center justify-between gap-3 pt-[18px] pb-[2px] text-[12px] text-ink-dim">
+              <div className="flex items-center justify-between gap-3 pt-[18px] pb-[2px] text-[13px] text-ink-dim">
                 <span className="flex items-center gap-2 min-w-0"><Avatar name={account.name} size={24} /><span className="truncate">{account.name}</span></span>
                 <span className="font-number whitespace-nowrap">{eur(accountMonthly(account.id, expenses))}/month</span>
               </div>

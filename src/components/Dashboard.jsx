@@ -39,7 +39,7 @@ function MonthNav({ month, start, today, onGo }) {
   return (
     <div className="flex items-center gap-1 mb-4">
       <button onClick={() => onGo(shiftMonth(month, -1))} disabled={month <= start} aria-label="Previous month" className={btn}><ChevronIcon dir="left" className="w-4 h-4" /></button>
-      <span className="text-[14px] text-ink min-w-[130px] text-center">{monthLabel(month)}</span>
+      <span className="text-[15px] text-ink min-w-[130px] text-center">{monthLabel(month)}</span>
       <button onClick={() => onGo(shiftMonth(month, 1))} disabled={month >= today} aria-label="Next month" className={btn}><ChevronIcon dir="right" className="w-4 h-4" /></button>
     </div>
   )
@@ -53,9 +53,9 @@ function MonthsCard({ months, selected, start, today, onGo }) {
   const max = Math.max(1, ...list.map((m) => m.total))
   return (
     <div className="card p-[18px]">
-      <div className="text-[12px] text-ink-dim mb-3">Month by Month</div>
+      <div className="text-[13px] text-ink-dim mb-3">Month by Month</div>
       {list.map((m) => (
-        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-[10px] items-center py-[7px] text-[13px] text-left rounded-md transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
+        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-[10px] items-center py-[7px] text-[14px] text-left rounded-md transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
           <span>{monthShort(m.month)}</span>
           <span className="h-[5px] rounded-full bg-surface2 overflow-hidden"><span className="block h-full rounded-full" style={{ width: `${(m.total / max) * 100}%`, background: m.month === selected ? '#4FD1A1' : '#2E9C78', minWidth: m.total > 0 ? 3 : 0 }} /></span>
           <span className="font-number whitespace-nowrap">{eur(m.total)}</span>
@@ -71,7 +71,7 @@ function itemSub(item) {
 }
 
 function Notice({ tone, children }) {
-  return <div className={`text-[13px] mt-4 ${tone === 'warn' ? 'text-neg' : 'text-ink-dim'}`}>{children}</div>
+  return <div className={`text-[14px] mt-4 ${tone === 'warn' ? 'text-neg' : 'text-ink-dim'}`}>{children}</div>
 }
 
 // The real monthly spend: what left the business account for personal use, as it happens.
@@ -98,14 +98,14 @@ function Spent({ load }) {
   if (error) {
     return (
       <div className="card p-[18px] mb-[14px]">
-        <div className="text-[14px] text-ink">{error}</div>
-        <button onClick={() => fetchMonth(month)} className="mt-3 h-9 px-3.5 rounded-lg border border-line text-[13px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
+        <div className="text-[15px] text-ink">{error}</div>
+        <button onClick={() => fetchMonth(month)} className="mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
       </div>
     )
   }
   if (!data) return <div className="card p-[18px] mb-[14px] animate-pulse h-[132px]" />
   if (data.configured === false) {
-    return <div className="card p-[18px] mb-[14px] text-[14px] text-ink-dim">Withdrawals are not connected to Numbers yet, so the real monthly spend cannot be shown.</div>
+    return <div className="card p-[18px] mb-[14px] text-[15px] text-ink-dim">Withdrawals are not connected to Numbers yet, so the real monthly spend cannot be shown.</div>
   }
 
   const start = data.start_month || START
@@ -117,8 +117,8 @@ function Spent({ load }) {
   if (data.month < start) {
     return (
       <div className="card p-[18px] mb-[14px]">
-        <div className="text-[14px] text-ink">Tracking starts in {monthLabel(start)}.</div>
-        <div className="text-[13px] text-ink-dim mt-1">From then on, every transfer from the business account to your own accounts is added here as it leaves, and the month closes on its last day.</div>
+        <div className="text-[15px] text-ink">Tracking starts in {monthLabel(start)}.</div>
+        <div className="text-[14px] text-ink-dim mt-1">From then on, every transfer from the business account to your own accounts is added here as it leaves, and the month closes on its last day.</div>
       </div>
     )
   }
@@ -129,19 +129,19 @@ function Spent({ load }) {
       <div className="grid grid-cols-1 min-[860px]:grid-cols-[1.5fr_1fr] gap-[14px] items-start">
         <div className="space-y-[14px]">
           <div className="card p-[18px]">
-            <div className="text-[12px] text-ink-dim">{open ? 'Spent So Far in' : 'Spent in'} {monthLabel(data.month)}</div>
-            <div className="text-[38px] max-[640px]:text-[32px] tracking-tight leading-[1.15] mt-[2px] mb-[4px] text-ink">
+            <div className="text-[13px] text-ink-dim">{open ? 'Spent So Far in' : 'Spent in'} {monthLabel(data.month)}</div>
+            <div className="text-[39px] max-[640px]:text-[33px] tracking-tight leading-[1.15] mt-[2px] mb-[4px] text-ink">
               <HeroAmount value={data.total_eur} />
             </div>
-            <div className="text-[13px] text-ink-dim">
+            <div className="text-[14px] text-ink-dim">
               {items.length ? `${items.length} ${items.length === 1 ? 'transfer' : 'transfers'}` : 'No transfers yet'}{open ? ' so far' : ''}
             </div>
-            <div className="text-[12px] text-ink-dim mt-2">An upper estimate: money counts when it leaves the account, not when you use it.</div>
+            <div className="text-[13px] text-ink-dim mt-2">An upper estimate: money counts when it leaves the account, not when you use it.</div>
           </div>
 
           <div className="card p-[18px]">
-            <div className="text-[12px] text-ink-dim mb-1">Transfers</div>
-            {items.length === 0 && <div className="text-[13px] text-ink-dim pt-2">No transfers to your own accounts this month yet.</div>}
+            <div className="text-[13px] text-ink-dim mb-1">Transfers</div>
+            {items.length === 0 && <div className="text-[14px] text-ink-dim pt-2">No transfers to your own accounts this month yet.</div>}
             {items.map((it) => (
               <LedgerRow key={it.transfer_id} title={it.name || 'Transfer'} sub={itemSub(it)} amount={eur(it.counted_eur)} />
             ))}
