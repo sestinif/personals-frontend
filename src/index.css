@@ -7,7 +7,7 @@
    Page #14141B · Surface #1B1B24 · Elevated #23232E
    Ink #EDEDF3 · Muted #9A9AA8 · Indigo #8D9BFF
    Green #4FD1A1 (gain/in) · Rose #F58A9B (loss/destructive)
-   1px hairlines, Inter only, tabular numbers. Depth comes from the
+   1px hairlines, Hanken Grotesk only, tabular numbers. Depth comes from the
    "Premium layer" at the bottom of this file.
    ============================================================ */
 
@@ -17,7 +17,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'tnum' 1, 'cv05' 1, 'ss01' 1;
     font-synthesis: none;
     letter-spacing: -0.005em;
@@ -114,8 +114,8 @@
 .expense-row::before { content: none; }
 .expense-row:hover, .dark .expense-row:hover { background: rgba(255, 255, 255, 0.02); }
 
-/* Numbers → Inter tabular (JetBrains Mono out) */
-.font-number { font-family: 'Inter', system-ui, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+/* Numbers → Hanken Grotesk tabular (JetBrains Mono out) */
+.font-number { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 
 /* Depth / rails / dividers — neutral */
 .text-depth, .dark .text-depth { text-shadow: none; }
