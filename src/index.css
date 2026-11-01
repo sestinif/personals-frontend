@@ -40,7 +40,8 @@
     border-radius: 8px;
     color: #EDEDF3;
     outline: none;
-    transition: border-color 0.15s;
+    transition-property: border-color;
+    transition-duration: 0.15s;
   }
   .input::placeholder { color: #9A9AA8; }
   .input:focus { border-color: #8D9BFF; box-shadow: none; }
@@ -48,11 +49,11 @@
     background: #8D9BFF;
     color: #14141B;
     border-radius: 8px;
-    transition: background-color 0.15s;
+    transition-property: background-color;
+    transition-duration: 0.15s;
   }
-  .btn-accent:hover { background: #A3AEFF; }
-  .btn-accent:active { transform: translateY(1px); }
-}
+  }
+@media (hover: hover) { .btn-accent:hover { background: #A3AEFF; } }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
@@ -78,9 +79,9 @@
   border-radius: 12px;
   box-shadow: none;
 }
-.card-premium:hover { border-color: rgba(255, 255, 255, 0.16); box-shadow: none; transform: none; }
+@media (hover: hover) { .card-premium:hover { border-color: rgba(255, 255, 255, 0.16); box-shadow: none; transform: none; } }
 .dark .card-premium { background: #1B1B24; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: none; }
-.dark .card-premium:hover { border-color: rgba(255, 255, 255, 0.16); box-shadow: none; transform: none; }
+@media (hover: hover) { .dark .card-premium:hover { border-color: rgba(255, 255, 255, 0.16); box-shadow: none; transform: none; } }
 
 .stat-card { position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: none; }
 .stat-card::before, .stat-card::after { content: none; }
@@ -106,13 +107,12 @@
 /* Buttons — no sheen */
 .btn-premium { position: relative; overflow: hidden; box-shadow: none; }
 .btn-premium::before, .btn-premium::after { content: none; }
-.btn-premium:active { transform: translateY(1px); }
 .btn-glow { animation: none; }
 
 /* Expense row */
-.expense-row { position: relative; transition: background-color 0.15s; }
+.expense-row { position: relative; transition-property: background-color; transition-duration: 0.15s; }
 .expense-row::before { content: none; }
-.expense-row:hover, .dark .expense-row:hover { background: rgba(255, 255, 255, 0.02); }
+@media (hover: hover) { .expense-row:hover, .dark .expense-row:hover { background: rgba(255, 255, 255, 0.02); } }
 
 /* Numbers → Hanken Grotesk tabular (JetBrains Mono out) */
 .font-number { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
@@ -187,11 +187,10 @@ button.bg-accent, a.bg-accent, .btn-accent {
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 1px 2px rgba(0, 0, 0, 0.35),
     0 8px 18px -8px rgba(141, 155, 255, 0.5);
-  transition: filter 0.2s var(--ease-out), transform 0.15s var(--ease-out), box-shadow 0.2s var(--ease-out);
+  transition: filter 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
-button.bg-accent:hover, a.bg-accent:hover, .btn-accent:hover { filter: brightness(1.07); }
+@media (hover: hover) { button.bg-accent:hover, a.bg-accent:hover, .btn-accent:hover { filter: brightness(1.07); } }
 button.bg-accent:active, a.bg-accent:active, .btn-accent:active {
-  transform: translateY(1px);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 button.bg-accent:disabled { filter: none; box-shadow: none; }
@@ -200,7 +199,9 @@ button.bg-accent:disabled { filter: none; box-shadow: none; }
 input.border-line-strong, select.border-line-strong {
   background: rgba(255, 255, 255, 0.025);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
-  transition: border-color 0.15s, box-shadow 0.2s var(--ease-out), background-color 0.15s;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: 0.15s, 0.2s, 0.15s;
+  transition-timing-function: ease-out, var(--ease-out), ease-out;
 }
 input.border-line-strong:focus, select.border-line-strong:focus {
   background: rgba(255, 255, 255, 0.035);
@@ -224,3 +225,45 @@ input.border-line-strong:focus, select.border-line-strong:focus {
   .stagger > * { animation: none; opacity: 1; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+
+/* ============================================================
+   better-ui — one grammar across the family (Wealth, Calendar, Gym, Numbers)
+   Concentric radii (outer = inner + padding + border), 8px bars with a 4px
+   radius, grouped figures, 44px hit areas, press 0.96, no sticky hover.
+   ============================================================ */
+
+/* 100vh jumps with the mobile browser bar: dvh where it exists */
+.app-shell { height: 100vh; height: 100dvh; }
+.app-fill { min-height: 100vh; min-height: 100dvh; }
+.sheet-max { max-height: 86vh; max-height: 86dvh; }
+
+/* Scrollable overlays never scroll the page behind them */
+.scroll-contain { overscroll-behavior: contain; }
+
+/* A 44px target behind the small controls, without making them bigger */
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -6px -2px; }
+
+/* Pressed controls: 0.96 over 150ms, never when disabled, only if motion is welcome */
+.press, button.bg-accent, a.bg-accent, .btn-accent { -webkit-tap-highlight-color: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .press, button.bg-accent, a.bg-accent, .btn-accent {
+    transition-property: color, background-color, border-color, filter, box-shadow, scale;
+    transition-duration: 0.15s, 0.15s, 0.15s, 0.2s, 0.2s, 0.15s;
+    transition-timing-function: ease-out;
+  }
+  .press:not(:disabled):active, button.bg-accent:not(:disabled):active, a.bg-accent:active, .btn-accent:not(:disabled):active { scale: 0.96; }
+}
+
+/* Segmented controls: 2px inset, 9px container, 6px active segment */
+.seg { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9px; background: #14141B; }
+
+/* Bars: 8px tall, 4px radius */
+.bar-track { height: 8px; border-radius: 4px; background: #23232E; overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 4px; }
+
+/* The figures read as one unit: one card divided by hairlines */
+.stat-card-group { display: grid; gap: 1px; overflow: hidden; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; }
+.stat-card-group > * { padding: 16px 18px; background: #1B1B24; min-width: 0; }
+@media (max-width: 640px) { .stat-card-group > * { padding: 14px 12px; } }

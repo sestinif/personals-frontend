@@ -96,7 +96,7 @@ export default function ExpenseForm({ expense, accounts, onSubmit, onCancel }) {
       </div>
 
       <div className="flex gap-3 pt-1">
-        <button type="button" onClick={onCancel} className="flex-1 h-11 text-[15px] text-ink-dim bg-transparent border border-line rounded-lg hover:border-line-strong hover:text-ink transition-colors">
+        <button type="button" onClick={onCancel} className="press flex-1 h-11 text-[15px] text-ink-dim bg-transparent border border-line rounded-lg hover:border-line-strong hover:text-ink transition-colors">
           Cancel
         </button>
         <button type="submit" className="flex-1 h-11 text-[15px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors">

@@ -31,17 +31,17 @@ export default function Modal({ open, onClose, title, children }) {
   return (
     <div
       ref={overlayRef}
-      className={`fixed inset-0 z-50 backdrop-modal flex items-center justify-center p-4 transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`fixed inset-0 z-50 backdrop-modal scroll-contain flex items-center justify-center p-4 transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
     >
       <div
-        className={`relative bg-surface surface-raised rounded-[14px] w-full max-w-md max-h-[calc(100dvh-2rem)] overflow-y-auto border border-line shadow-sheet transition-all duration-200 ${
+        className={`relative bg-surface surface-raised rounded-[14px] w-full max-w-md max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto scroll-contain border border-line shadow-sheet transition-[opacity,transform] duration-200 ${
           isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-[0.98] translate-y-2'
         }`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
           <h3 className="text-[16px] font-medium text-ink">{title}</h3>
-          <button onClick={onClose} aria-label="Close" className="w-8 h-8 -mr-1.5 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.06] transition-colors">
+          <button onClick={onClose} aria-label="Close" className="press hit w-8 h-8 -mr-1.5 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.06] transition-colors">
             <XIcon className="w-5 h-5" />
           </button>
         </div>

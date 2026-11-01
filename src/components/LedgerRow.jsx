@@ -5,7 +5,7 @@ export default function LedgerRow({ avatar, title, sub, amount, amountSub, tone,
   return (
     <button
       onClick={onClick}
-      className="w-full grid grid-cols-[1fr_auto] gap-3 items-center py-[11px] border-t border-line text-left transition-colors hover:bg-white/[0.02]"
+      className="w-full grid grid-cols-[1fr_auto] gap-3 items-center py-3 border-t border-line text-left transition-colors hover:bg-white/[0.02]"
     >
       <span className="min-w-0 flex items-center gap-3">
         {avatar}
@@ -15,7 +15,7 @@ export default function LedgerRow({ avatar, title, sub, amount, amountSub, tone,
         </span>
       </span>
       <span className="text-right whitespace-nowrap">
-        <span className={`block text-[15px] font-number ${amtClass}`}>{amount}</span>
+        <span className={`block text-[15px] font-medium font-number ${amtClass}`}>{amount}</span>
         {amountSub && <span className="block text-[13px] text-ink-dim font-number mt-[1px]">{amountSub}</span>}
       </span>
     </button>

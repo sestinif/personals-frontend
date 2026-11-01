@@ -30,7 +30,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
   }
 
   return (
-    <div className="min-h-screen bg-bg app-canvas flex items-center justify-center p-4">
+    <div className="app-fill bg-bg app-canvas flex items-center justify-center p-4">
       <div className="w-full max-w-[360px]">
         <div className="text-center mb-7">
           <BrandMark size={48} className="mx-auto mb-4 drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]" />

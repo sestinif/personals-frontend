@@ -27,12 +27,12 @@ export default function AccountView({ account, expenses, onAddExpense, onEditExp
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           {login && (
-            <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Log in to ${account.name}`} className="h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[14px] max-[640px]:w-9 max-[640px]:px-0">
+            <a href={login} target="_blank" rel="noopener noreferrer" aria-label={`Log in to ${account.name}`} className="press hit h-9 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors text-[14px] max-[640px]:w-9 max-[640px]:px-0">
               <ExternalLinkIcon className="w-4 h-4" />
               <span className="max-[640px]:hidden">Log In</span>
             </a>
           )}
-          <button onClick={() => setAcctSheet(true)} aria-label="Edit account" className="w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
+          <button onClick={() => setAcctSheet(true)} aria-label="Edit account" className="press hit w-9 h-9 inline-flex items-center justify-center rounded-lg border border-line text-ink-dim hover:text-ink hover:border-line-strong transition-colors">
             <PencilIcon className="w-4 h-4" />
           </button>
           <button onClick={() => onAddExpense(account.id)} className="inline-flex items-center justify-center gap-2 bg-accent text-bg font-medium rounded-lg h-9 px-3.5 text-[14px] hover:bg-brand-700 transition-colors max-[640px]:w-9 max-[640px]:px-0 max-[640px]:rounded-full">

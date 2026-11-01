@@ -35,11 +35,12 @@ function HeroAmount({ value }) {
 }
 
 function MonthNav({ month, start, today, onGo }) {
-  const btn = 'w-8 h-8 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink hover:bg-white/[0.04] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink-dim transition-colors'
+  // Segmented: 6px buttons + 2px inset + 1px border = 9px container. The 44px hit area sits behind.
+  const btn = 'press hit w-8 h-8 inline-flex items-center justify-center rounded-[6px] text-ink-dim hover:text-ink hover:bg-white/[0.04] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink-dim transition-colors'
   return (
-    <div className="flex items-center gap-1 mb-4">
+    <div className="seg mb-4">
       <button onClick={() => onGo(shiftMonth(month, -1))} disabled={month <= start} aria-label="Previous month" className={btn}><ChevronIcon dir="left" className="w-4 h-4" /></button>
-      <span className="text-[15px] text-ink min-w-[130px] text-center">{monthLabel(month)}</span>
+      <span className="text-[15px] text-ink min-w-[130px] text-center px-1">{monthLabel(month)}</span>
       <button onClick={() => onGo(shiftMonth(month, 1))} disabled={month >= today} aria-label="Next month" className={btn}><ChevronIcon dir="right" className="w-4 h-4" /></button>
     </div>
   )
@@ -53,11 +54,11 @@ function MonthsCard({ months, selected, start, today, onGo }) {
   const max = Math.max(1, ...list.map((m) => m.total))
   return (
     <div className="card p-[18px]">
-      <div className="text-[13px] text-ink-dim mb-3">Month by Month</div>
+      <div className="text-[13px] text-ink-dim mb-1">Month by Month</div>
       {list.map((m) => (
-        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-[10px] items-center py-[7px] text-[14px] text-left rounded-md transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
+        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-3 items-center py-[10px] border-t border-line text-[14px] text-left transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
           <span>{monthShort(m.month)}</span>
-          <span className="h-[5px] rounded-full bg-surface2 overflow-hidden"><span className="block h-full rounded-full" style={{ width: `${(m.total / max) * 100}%`, background: m.month === selected ? '#4FD1A1' : '#2E9C78', minWidth: m.total > 0 ? 3 : 0 }} /></span>
+          <span className="bar-track"><span className="bar-fill" style={{ width: `${(m.total / max) * 100}%`, background: m.month === selected ? '#4FD1A1' : '#2E9C78', minWidth: m.total > 0 ? 3 : 0 }} /></span>
           <span className="font-number whitespace-nowrap">{eur(m.total)}</span>
         </button>
       ))}
@@ -99,7 +100,7 @@ function Spent({ load }) {
     return (
       <div className="card p-[18px] mb-[14px]">
         <div className="text-[15px] text-ink">{error}</div>
-        <button onClick={() => fetchMonth(month)} className="mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
+        <button onClick={() => fetchMonth(month)} className="press mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
       </div>
     )
   }
