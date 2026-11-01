@@ -16,7 +16,7 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
     } else {
       setShown(false)
       setArmed(false)
-      const t = setTimeout(() => setRender(false), 220)
+      const t = setTimeout(() => setRender(false), 210)
       return () => clearTimeout(t)
     }
   }, [open])
@@ -44,13 +44,13 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
   return (
     <div className="fixed inset-0 z-[400]" aria-modal="true" role="dialog">
       <div
-        className={`absolute inset-0 bg-[rgba(8,8,12,0.55)] backdrop-blur-[5px] transition-opacity duration-200 ${shown ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 bg-[rgba(8,8,12,0.55)] backdrop-blur-[5px] transition-opacity duration-200 ease-out ${shown ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
       />
       <div
         className={`absolute left-0 right-0 bottom-0 sheet-max scroll-contain overflow-y-auto bg-surface surface-raised border-t border-line rounded-t-[20px] p-[10px_18px_24px]
           sm:left-auto sm:top-0 sm:bottom-0 sm:right-0 sm:w-[380px] sm:max-h-none sm:h-full sm:rounded-none sm:border-t-0 sm:border-l sm:p-6
-          transition-transform duration-200 ${shown ? 'translate-y-0 sm:translate-x-0' : 'translate-y-6 sm:translate-y-0 sm:translate-x-6'}`}
+          transition-[transform,opacity] duration-200 ease-out ${shown ? 'opacity-100 translate-y-0 sm:translate-x-0' : 'opacity-0 motion-safe:translate-y-6 motion-safe:sm:translate-y-0 motion-safe:sm:translate-x-6'}`}
       >
         <div className="w-9 h-1 rounded-full bg-[#3A3A48] mx-auto mb-4 sm:hidden" />
         <div className="flex items-center gap-3 mb-3">

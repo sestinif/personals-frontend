@@ -14,7 +14,7 @@ export default function Modal({ open, onClose, title, children }) {
     } else {
       setIsVisible(false)
       document.body.style.overflow = ''
-      const t = setTimeout(() => setShouldRender(false), 220)
+      const t = setTimeout(() => setShouldRender(false), 170)
       return () => clearTimeout(t)
     }
     return () => { document.body.style.overflow = '' }
@@ -31,13 +31,12 @@ export default function Modal({ open, onClose, title, children }) {
   return (
     <div
       ref={overlayRef}
-      className={`fixed inset-0 z-50 backdrop-modal scroll-contain flex items-center justify-center p-4 transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`fixed inset-0 z-50 backdrop-modal scroll-contain flex items-center justify-center p-4 transition-opacity ease-out ${isVisible ? 'opacity-100 duration-300' : 'opacity-0 duration-150'}`}
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
     >
       <div
-        className={`relative bg-surface surface-raised rounded-[14px] w-full max-w-md max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto scroll-contain border border-line shadow-sheet transition-[opacity,transform] duration-200 ${
-          isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-[0.98] translate-y-2'
-        }`}
+        className="relative bg-surface surface-raised rounded-[14px] w-full max-w-md max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto scroll-contain border border-line shadow-sheet fx"
+        data-fx={isVisible ? 'on' : open ? 'pre' : 'out'}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
           <h3 className="text-[16px] font-medium text-ink">{title}</h3>

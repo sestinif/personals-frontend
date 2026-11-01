@@ -104,9 +104,9 @@ function AppContent({ onLogout }) {
 
   return (
     <div className="flex app-shell bg-bg">
-      {sidebarOpen && <div className="fixed inset-0 z-20 bg-black/50 md:hidden" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && <div className="fixed inset-0 z-20 bg-black/50 md:hidden animate-fade-in" onClick={() => setSidebarOpen(false)} />}
 
-      <aside className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed md:static z-30 h-full flex-shrink-0 transition-transform duration-200 md:translate-x-0`}>
+      <aside className={`${sidebarOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0 motion-reduce:translate-x-0 motion-reduce:pointer-events-none md:opacity-100'} fixed md:static z-30 h-full flex-shrink-0 transition-[transform,opacity] duration-200 ease-out md:translate-x-0`}>
         <Sidebar
           accounts={accounts}
           activeView={activeView}
@@ -122,7 +122,7 @@ function AppContent({ onLogout }) {
       <main className="flex-1 overflow-y-auto app-canvas">
         <div className="md:hidden sticky top-0 z-10 bg-bg border-b border-line px-4 py-3">
           <button onClick={() => setSidebarOpen(true)} aria-label="Open menu" className="press hit w-9 h-9 inline-flex items-center justify-center rounded-lg text-ink-dim hover:text-ink">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            <svg className="ico w-5 h-5" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
           </button>
         </div>
 

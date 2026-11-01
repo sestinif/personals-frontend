@@ -7,15 +7,16 @@ export function useToast() {
 }
 
 function ToastItem({ toast, onRemove }) {
-  const [visible, setVisible] = useState(false)
+  const [fx, setFx] = useState('pre')
 
   useEffect(() => {
-    requestAnimationFrame(() => setVisible(true))
+    const raf = requestAnimationFrame(() => setFx('on'))
+    let gone
     const t = setTimeout(() => {
-      setVisible(false)
-      setTimeout(onRemove, 300)
+      setFx('out')
+      gone = setTimeout(onRemove, 170)
     }, 2500)
-    return () => clearTimeout(t)
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(gone) }
   }, [onRemove])
 
   const colors = {
@@ -26,17 +27,17 @@ function ToastItem({ toast, onRemove }) {
 
   const icons = {
     success: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+      <svg className="ico w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
       </svg>
     ),
     error: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+      <svg className="ico w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
       </svg>
     ),
     info: (
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+      <svg className="ico w-4 h-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
       </svg>
     ),
@@ -44,10 +45,9 @@ function ToastItem({ toast, onRemove }) {
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-white text-[14px] font-semibold toast-premium transition-[opacity,transform] duration-300 ${
+      data-fx={fx}
+      className={`fx flex items-center gap-3 px-4 py-3 rounded-xl text-white text-[14px] font-semibold toast-premium ${
         colors[toast.type] || colors.info
-      } ${
-        visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-2 scale-95'
       }`}
     >
       <span className="flex-shrink-0">{icons[toast.type] || icons.info}</span>

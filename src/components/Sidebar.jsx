@@ -4,7 +4,7 @@ import { PlusIcon, ChartIcon, XIcon } from './Icons'
 
 function LogoutIcon({ className }) {
   return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg className={`ico ${className}`} fill="none" viewBox="0 0 24 24" aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
     </svg>
   )
@@ -31,7 +31,7 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
         )}
       </div>
 
-      <nav className="flex-1 px-3 py-2 overflow-y-auto">
+      <nav className="flex-1 px-3 py-2 overflow-y-auto scroll-contain">
         <div className="px-3 pb-2 text-[13px] text-ink-dim">Menu</div>
         <button onClick={() => onSelect('dashboard')} className={itemClass(activeView === 'dashboard')}>
           <ChartIcon className="w-[18px] h-[18px]" />

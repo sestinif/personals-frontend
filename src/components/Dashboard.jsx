@@ -56,7 +56,7 @@ function MonthsCard({ months, selected, start, today, onGo }) {
     <div className="card p-[18px]">
       <div className="text-[13px] text-ink-dim mb-1">Month by Month</div>
       {list.map((m) => (
-        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-3 items-center py-[10px] border-t border-line text-[14px] text-left transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
+        <button key={m.month} onClick={() => onGo(m.month)} className={`w-full grid grid-cols-[36px_1fr_auto] gap-3 items-center py-3 border-t border-line text-[14px] text-left transition-colors hover:bg-white/[0.02] ${m.month === selected ? 'text-ink' : 'text-ink-dim'}`}>
           <span>{monthShort(m.month)}</span>
           <span className="bar-track"><span className="bar-fill" style={{ width: `${(m.total / max) * 100}%`, background: m.month === selected ? '#4FD1A1' : '#2E9C78', minWidth: m.total > 0 ? 3 : 0 }} /></span>
           <span className="font-number whitespace-nowrap">{eur(m.total)}</span>
@@ -100,7 +100,7 @@ function Spent({ load }) {
     return (
       <div className="card p-[18px] mb-[14px]">
         <div className="text-[15px] text-ink">{error}</div>
-        <button onClick={() => fetchMonth(month)} className="press mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
+        <button onClick={() => fetchMonth(month)} className="press hit mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
       </div>
     )
   }
