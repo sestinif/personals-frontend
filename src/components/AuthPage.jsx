@@ -55,7 +55,7 @@ export default function AuthPage({ onAuth, apiUrl }) {
               </div>
             )}
 
-            <button type="submit" disabled={loading} className="w-full h-11 text-[15px] font-medium text-bg bg-accent rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <button type="submit" disabled={loading} className="w-full h-11 text-[15px] font-medium text-bg bg-accent rounded-full hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
               {loading ? 'Signing In…' : 'Sign In'}
             </button>
           </form>

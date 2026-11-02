@@ -74,13 +74,13 @@ export default function DetailSheet({ open, onClose, title, subtitle, avatar, am
         </dl>
         <div className="flex gap-2 mt-4">
           {onEdit && (
-            <button onClick={onEdit} className="press flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-ink bg-transparent border border-line rounded-[10px] hover:border-line-strong">
+            <button onClick={onEdit} className="press flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-ink bg-transparent border border-line rounded-full hover:border-line-strong">
               <PencilIcon className="w-4 h-4" />Edit
             </button>
           )}
           <button
             onClick={handleDelete}
-            className={`press flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-neg rounded-[10px] border ${armed ? 'bg-neg/[0.12] border-neg/40' : 'bg-transparent border-line'}`}
+            className={`press flex-1 inline-flex items-center justify-center gap-2 py-[11px] text-[15px] text-neg rounded-full border ${armed ? 'bg-neg/[0.12] border-neg/40' : 'bg-transparent border-line'}`}
           >
             <TrashIcon className="w-4 h-4" />{armed ? 'Confirm' : deleteLabel}
           </button>

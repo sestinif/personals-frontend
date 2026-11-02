@@ -100,7 +100,7 @@ function Spent({ load }) {
     return (
       <div className="card p-[18px] mb-[14px]">
         <div className="text-[15px] text-ink">{error}</div>
-        <button onClick={() => fetchMonth(month)} className="press hit mt-3 h-9 px-3.5 rounded-lg border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
+        <button onClick={() => fetchMonth(month)} className="press hit mt-3 h-9 px-4 rounded-full border border-line text-[14px] text-ink hover:bg-white/[0.03] transition-colors">Try Again</button>
       </div>
     )
   }

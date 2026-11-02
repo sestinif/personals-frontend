@@ -54,7 +54,7 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
       </nav>
 
       <div className="px-3 pb-4 pt-2 space-y-1.5 border-t border-line">
-        <button onClick={onAddExpense} className="press w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[14px] font-medium text-bg bg-accent hover:bg-brand-700 transition-colors">
+        <button onClick={onAddExpense} className="press w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-full text-[14px] font-medium text-bg bg-accent hover:bg-brand-700 transition-colors">
           <PlusIcon className="w-[18px] h-[18px]" />New Expense
         </button>
         <button onClick={onAddAccount} className="press w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[14px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">

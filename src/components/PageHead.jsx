@@ -12,7 +12,7 @@ export default function PageHead({ greeting, title, actionLabel, onAction }) {
       {onAction && (
         <button
           onClick={onAction}
-          className="hit flex-shrink-0 inline-flex items-center justify-center gap-2 bg-accent text-bg font-medium rounded-lg transition-colors hover:bg-brand-700 h-9 ps-3 pe-3.5 text-[14px] max-[640px]:w-9 max-[640px]:px-0 max-[640px]:rounded-full"
+          className="hit flex-shrink-0 inline-flex items-center justify-center gap-2 bg-accent text-bg font-medium rounded-full transition-colors hover:bg-brand-700 h-9 ps-3.5 pe-4 text-[14px] max-[640px]:w-9 max-[640px]:px-0 max-[640px]:rounded-full"
         >
           <PlusIcon className="w-4 h-4" />
           <span className="max-[640px]:hidden">{actionLabel}</span>

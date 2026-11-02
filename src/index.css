@@ -48,7 +48,7 @@
   .btn-accent {
     background: #8D9BFF;
     color: #14141B;
-    border-radius: 8px;
+    border-radius: 999px;
     transition-property: background-color;
     transition-duration: 0.15s;
   }
