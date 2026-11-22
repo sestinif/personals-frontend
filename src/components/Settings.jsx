@@ -6,7 +6,7 @@ import PageHead from './PageHead'
 const SOURCE = { name: 'Oakstone Thirteen LLC', note: 'Moves money out to Revolut and Bunq' }
 const DESTINATIONS = [
   { name: 'Revolut', use: 'Spending in Malta' },
-  { name: 'Bunq', use: 'Investments' },
+  { name: 'Bunq', use: 'Personal investments and savings' },
 ]
 const SEPARATE = { name: 'Intesa', use: 'Pays off Amex' }
 
