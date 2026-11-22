@@ -20,6 +20,7 @@ const BANKS = [
   { keys: ['n26'], label: 'N26', bg: '#1A2A26', fg: '#48C7B0', ring: '#48C7B0', domain: 'n26.com', login: 'https://app.n26.com' },
   { keys: ['revolut business'], label: 'Revolut Business', bg: '#0B1622', fg: '#7DA8FF', ring: '#2B6CF6', domain: 'revolut.com', login: 'https://business.revolut.com/login' },
   { keys: ['revolut'], label: 'Revolut', bg: '#0B1622', fg: '#7DA8FF', ring: '#2B6CF6', domain: 'revolut.com', login: 'https://app.revolut.com' },
+  { keys: ['bunq'], label: 'Bunq', bg: '#0F1F17', fg: '#5FD38D', domain: 'bunq.com', login: 'https://web.bunq.com/' },
   { keys: ['american express', 'amex'], label: 'Amex', bg: '#0A2A4A', fg: '#5AA9F0', domain: 'americanexpress.com', login: 'https://www.americanexpress.com/it/' },
   { keys: ['intesa sanpaolo', 'intesa', 'isp'], label: 'Intesa', bg: '#0E2A1E', fg: '#3FBE82', domain: 'intesasanpaolo.com', login: 'https://www.intesasanpaolo.com/' },
   { keys: ['fineco'], label: 'Fineco', bg: '#2A1416', fg: '#FF6B6B', domain: 'finecobank.com', login: 'https://finecobank.com/' },

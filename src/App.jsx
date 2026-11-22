@@ -5,6 +5,7 @@ import Modal from './components/Modal'
 import ExpenseForm from './components/ExpenseForm'
 import AccountForm from './components/AccountForm'
 import AuthPage from './components/AuthPage'
+import Settings from './components/Settings'
 import Sidebar from './components/Sidebar'
 import { ToastProvider, useToast } from './components/Toast'
 
@@ -137,6 +138,8 @@ function AppContent({ onLogout }) {
               onEditAccount={(account) => setAccountModal({ open: true, account })}
               onDeleteAccount={handleDeleteAccount}
             />
+          ) : activeView === 'settings' ? (
+            <Settings />
           ) : (
             <Dashboard loadWithdrawals={loadWithdrawals} />
           )}

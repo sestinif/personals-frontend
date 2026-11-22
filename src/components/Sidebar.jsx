@@ -2,6 +2,14 @@ import Avatar from './Avatar'
 import BrandMark from './BrandMark'
 import { PlusIcon, ChartIcon, XIcon } from './Icons'
 
+function GearIcon({ className }) {
+  return (
+    <svg className={`ico ${className}`} fill="none" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+    </svg>
+  )
+}
+
 function LogoutIcon({ className }) {
   return (
     <svg className={`ico ${className}`} fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -59,6 +67,9 @@ export default function Sidebar({ accounts, activeView, countFor, onSelect, onAd
         </button>
         <button onClick={onAddAccount} className="press w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[14px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
           <PlusIcon className="w-[18px] h-[18px]" />New Account
+        </button>
+        <button onClick={() => onSelect('settings')} className={`press w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[14px] transition-colors ${activeView === 'settings' ? 'nav-active-pill text-ink' : 'text-ink-dim hover:bg-white/[0.03] hover:text-ink'}`}>
+          <GearIcon className="w-[18px] h-[18px]" />Settings
         </button>
         <button onClick={onLogout} className="press w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[14px] text-ink-dim hover:bg-white/[0.03] hover:text-ink transition-colors">
           <LogoutIcon className="w-[18px] h-[18px]" />Log Out
