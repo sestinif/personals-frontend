@@ -3,12 +3,12 @@ import PageHead from './PageHead'
 
 // Money map: where the money leaves the LLC and what each account is for.
 // A reminder only, nothing here is calculated.
-const SOURCE = { name: 'Oakstone Thirteen LLC', note: 'Moves money out to Revolut, Bunq and Intesa' }
+const SOURCE = { name: 'Oakstone Thirteen LLC', note: 'Moves money out only to Revolut or Bunq, never to Intesa' }
 const DESTINATIONS = [
   { name: 'Revolut', use: 'Spending in Malta', note: 'Only account for the Malta declaration' },
   { name: 'Bunq', use: 'Personal investments and savings' },
-  { name: 'Intesa', use: 'Pays off Amex', note: 'Also receives dividends' },
 ]
+const SEPARATE = { name: 'Intesa', use: 'Pays off Amex', note: 'No longer receives money from the LLC' }
 
 function Row({ name, use, note }) {
   return (
@@ -39,6 +39,9 @@ export default function Settings() {
           </div>
           <div className="ps-[14px] ms-[14px] border-s border-line">
             {DESTINATIONS.map((d) => <Row key={d.name} {...d} />)}
+          </div>
+          <div className="mt-3 pt-1 border-t border-line">
+            <Row {...SEPARATE} />
           </div>
         </div>
       </section>
